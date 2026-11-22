@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASU.AI — AI Science Universe</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #07111f;
+      color: white;
+    }
+    header {
+      padding: 22px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #203047;
+    }
+    .logo { font-size: 26px; font-weight: bold; color: #42c8ff; }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+    .hero {
+      text-align: center;
+      padding: 110px 20px;
+      background: radial-gradient(circle, #123b65, #07111f 70%);
+    }
+    .hero h1 { font-size: 48px; margin-bottom: 15px; }
+    .hero p { color: #b9c9dc; font-size: 18px; }
+    .fields {
+      padding: 55px 8%;
+      text-align: center;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    .card {
+      padding: 28px;
+      background: #12243a;
+      border: 1px solid #294765;
+      border-radius: 14px;
+    }
+    .card h3 { color: #42c8ff; }
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #9aadc2;
+    }
+    @media(max-width: 600px) {
+      header { flex-direction: column; gap: 15px; }
+      nav a { margin: 0 6px; font-size: 13px; }
+      .hero h1 { font-size: 34px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">ASU.AI</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#explore">Explore</a>
+    <a href="#fields">Fields</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Welcome to ASU.AI</h1>
+  <p>Explore. Experiment. Discover.</p>
+  <p>Discover science, explore ideas and create the future with AI.</p>
+</section>
+
+<section class="fields" id="fields">
+  <h2>Explore Six Science Universes</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Explore the Unknown</h3>
+      <p>Discover space, galaxies and cosmic mysteries.</p>
+    </div>
+    <div class="card">
+      <h3>Learn by Experiment</h3>
+      <p>Explore virtual Physics, Chemistry and Biology labs.</p>
+    </div>
+    <div class="card">
+      <h3>Discover Connections</h3>
+      <p>Connect ideas across different scientific fields.</p>
+    </div>
+    <div class="card">
+      <h3>AI Research Companion</h3>
+      <p>Explore scientific research and discoveries.</p>
+    </div>
+    <div class="card">
+      <h3>Invent Something New</h3>
+      <p>Turn creative ideas into innovative projects.</p>
+    </div>
+    <div class="card">
+      <h3>Understand the Future</h3>
+      <p>Explore AI, robotics and future technologies.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  ASU.AI — An initiative of ProtiQ Labs
+</footer>
+
+</body>
+</html>
