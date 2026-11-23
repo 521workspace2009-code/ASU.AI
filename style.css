@@ -1,5 +1,8 @@
 
-/* ASU.AI — Main Styles */
+/* =========================================
+   ASU.AI — AI SCIENCE UNIVERSE
+   Main Website Stylesheet
+========================================= */
 
 * {
     margin: 0;
@@ -7,72 +10,244 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #07111f;
-    color: #ffffff;
-    line-height: 1.6;
+html {
+    scroll-behavior: smooth;
 }
 
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #050b16;
+    color: #ffffff;
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* HEADER */
+
 header {
-    background-color: #0b1b2e;
-    padding: 20px 8%;
+    width: 100%;
+    min-height: 85px;
+    padding: 18px 7%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: rgba(5, 11, 22, 0.95);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(15px);
 }
 
 .logo {
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 29px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+.logo span,
+.footer-logo span {
     color: #38bdf8;
 }
 
+nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
 nav a {
-    color: #ffffff;
-    text-decoration: none;
-    margin-left: 25px;
+    color: #b9c8da;
+    font-size: 14px;
+    transition: 0.3s;
 }
 
 nav a:hover {
     color: #38bdf8;
 }
 
-.hero {
-    text-align: center;
-    padding: 100px 20px;
+.nav-button {
+    background: #0ea5e9;
+    color: #ffffff;
+    padding: 11px 23px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
 }
 
-.hero h1 {
-    font-size: 48px;
+.nav-button:hover,
+.primary-button:hover {
+    background: #0284c7;
+    transform: translateY(-3px);
+}
+
+/* HERO SECTION */
+
+.hero {
+    min-height: 620px;
+    padding: 110px 8%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 80% 40%,
+        rgba(14, 116, 190, 0.23), transparent 45%),
+        linear-gradient(135deg, #071426, #050b16 75%);
+}
+
+.hero-content {
+    max-width: 750px;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-label,
+.section-label {
+    color: #38bdf8;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
     margin-bottom: 20px;
 }
 
-.hero p {
-    color: #b8c7d9;
-    font-size: 18px;
-    margin-bottom: 30px;
+.hero h1 {
+    font-size: clamp(38px, 6vw, 68px);
+    line-height: 1.15;
+    font-weight: 800;
+    margin-bottom: 25px;
+    letter-spacing: -2px;
 }
 
-.hero button {
-    background-color: #38bdf8;
-    color: #07111f;
-    border: none;
-    padding: 14px 28px;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
+.hero h1 span {
+    color: #38bdf8;
 }
+
+.hero-description {
+    color: #a9bad0;
+    font-size: 17px;
+    max-width: 600px;
+    margin-bottom: 35px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.primary-button,
+.secondary-button {
+    display: inline-block;
+    padding: 14px 25px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.primary-button {
+    background: #0ea5e9;
+    color: white;
+}
+
+.secondary-button {
+    border: 1px solid #38bdf8;
+    color: #38bdf8;
+}
+
+.secondary-button:hover {
+    background: rgba(56, 189, 248, 0.12);
+}
+
+/* HERO DECORATION */
+
+.hero-decoration {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    right: 8%;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.planet {
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%,
+        #a5f3fc, #0ea5e9 45%, #075985);
+    box-shadow: 0 0 70px rgba(14, 165, 233, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 45px;
+    color: white;
+}
+
+.orbit {
+    position: absolute;
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 50%;
+}
+
+.orbit-one {
+    width: 230px;
+    height: 230px;
+}
+
+.orbit-two {
+    width: 330px;
+    height: 330px;
+    transform: rotateX(65deg);
+}
+
+/* INTRODUCTION */
+
+.introduction {
+    padding: 100px 10%;
+    text-align: center;
+    background: #081323;
+}
+
+.introduction h2,
+.section-heading h2,
+.ai-section h2,
+.universe-section h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.introduction > p:last-child,
+.section-heading > p:last-child,
+.ai-section > p:not(.section-label):not(.coming-soon),
+.universe-section > p:not(.section-label) {
+    max-width: 750px;
+    margin: auto;
+    color: #a9bad0;
+    font-size: 16px;
+}
+
+/* SIX SCIENCE FIELDS */
 
 .fields {
-    padding: 50px 8%;
-    text-align: center;
+    padding: 100px 8%;
+    background: #050b16;
 }
 
-.fields h2 {
-    font-size: 32px;
-    margin-bottom: 35px;
+.section-heading {
+    text-align: center;
+    margin-bottom: 55px;
 }
 
 .field-container {
@@ -82,49 +257,234 @@ nav a:hover {
 }
 
 .field-card {
-    background-color: #10243b;
-    padding: 30px;
-    border-radius: 12px;
+    background: linear-gradient(145deg, #11243b, #0a1628);
     border: 1px solid #1e3a56;
-    transition: transform 0.3s;
+    border-radius: 15px;
+    padding: 35px 28px;
+    min-height: 270px;
+    transition: 0.35s;
 }
 
 .field-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-8px);
+    border-color: #38bdf8;
+    box-shadow: 0 12px 40px rgba(14, 165, 233, 0.12);
+}
+
+.field-icon {
+    font-size: 36px;
+    margin-bottom: 18px;
 }
 
 .field-card h3 {
     color: #38bdf8;
+    font-size: 19px;
     margin-bottom: 12px;
 }
 
 .field-card p {
-    color: #b8c7d9;
+    color: #a9bad0;
+    font-size: 14px;
+    margin-bottom: 20px;
 }
+
+.field-card a {
+    color: #38bdf8;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* AI INTELLIGENCE ENGINE */
+
+.ai-section {
+    padding: 100px 8%;
+    text-align: center;
+    background:
+        radial-gradient(ellipse at center,
+        rgba(14, 116, 190, 0.15), transparent 70%),
+        #081323;
+}
+
+.ai-section > p:not(.section-label):not(.coming-soon) {
+    margin-bottom: 35px;
+}
+
+.ai-modes {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 35px 0;
+}
+
+.ai-mode {
+    padding: 14px 27px;
+    background: #10243b;
+    border: 1px solid #245071;
+    border-radius: 8px;
+    color: #38bdf8;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.ai-mode:hover {
+    background: #0c3858;
+    border-color: #38bdf8;
+}
+
+.coming-soon {
+    color: #38bdf8;
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+/* MY UNIVERSE */
+
+.universe-section {
+    padding: 100px 8%;
+    text-align: center;
+    background: #050b16;
+}
+
+.universe-section > p:not(.section-label) {
+    margin-bottom: 30px;
+}
+
+/* FOOTER */
 
 footer {
+    padding: 50px 8%;
     text-align: center;
-    padding: 25px;
-    background-color: #0b1b2e;
-    color: #9caec2;
-    margin-top: 50px;
+    background: #081323;
+    border-top: 1px solid #1e3a56;
 }
 
-@media (max-width: 768px) {
+.footer-logo {
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+footer > p {
+    color: #a9bad0;
+    margin-bottom: 10px;
+}
+
+.copyright {
+    margin-top: 25px;
+    font-size: 12px;
+    color: #71849b;
+}
+
+/* TABLET RESPONSIVENESS */
+
+@media (max-width: 950px) {
+    .hero-decoration {
+        opacity: 0.25;
+        right: -100px;
+    }
+
+    .field-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    nav {
+        gap: 14px;
+    }
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 650px) {
     header {
-        flex-direction: column;
+        padding: 18px 5%;
+        flex-wrap: wrap;
         gap: 15px;
     }
 
+    .logo {
+        font-size: 25px;
+    }
+
+    nav {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
     nav a {
-        margin: 0 8px;
+        font-size: 12px;
+    }
+
+    .nav-button {
+        display: none;
+    }
+
+    .hero {
+        min-height: 540px;
+        padding: 85px 7%;
     }
 
     .hero h1 {
-        font-size: 34px;
+        font-size: 39px;
+        letter-spacing: -1px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+    }
+
+    .hero-decoration {
+        width: 250px;
+        height: 250px;
+        right: -110px;
+        opacity: 0.17;
+    }
+
+    .orbit-two {
+        width: 240px;
+        height: 240px;
+    }
+
+    .orbit-one {
+        width: 170px;
+        height: 170px;
+    }
+
+    .planet {
+        width: 85px;
+        height: 85px;
+    }
+
+    .introduction,
+    .fields,
+    .ai-section,
+    .universe-section {
+        padding: 70px 6%;
+    }
+
+    .introduction h2,
+    .section-heading h2,
+    .ai-section h2,
+    .universe-section h2 {
+        font-size: 28px;
     }
 
     .field-container {
         grid-template-columns: 1fr;
+    }
+
+    .field-card {
+        min-height: auto;
+    }
+
+    .ai-mode {
+        padding: 12px 19px;
+    }
+
+    footer {
+        padding: 40px 6%;
     }
 }
