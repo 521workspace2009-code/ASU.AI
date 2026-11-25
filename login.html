@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | ASU.AI</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .box { max-width: 420px; margin: 40px auto; padding: 0 20px; }
+        .box input, .box button { width: 100%; box-sizing: border-box; padding: 12px; margin: 6px 0; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo">ASU<span>.AI</span></a>
+        <nav><a href="index.html">Home</a><a href="inventions.html">Invent</a></nav>
+    </header>
+
+    <main class="box">
+        <section id="auth">
+            <h2>Sign up / Log in</h2>
+            <input id="email" type="email" placeholder="Email">
+            <input id="password" type="password" placeholder="Password">
+            <button id="signup">Sign up</button>
+            <button id="login">Log in</button>
+        </section>
+
+        <section id="universe" hidden>
+            <h2>My Universe</h2>
+            <p id="who"></p>
+            <input id="title" placeholder="New invention idea">
+            <button id="save">Save</button>
+            <ul id="list"></ul>
+            <button id="logout">Log out</button>
+        </section>
+
+        <p id="message"></p>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+    <script>
+        const SUPABASE_URL = "https://fanuyqvuuegpezsbevtp.supabase.co";
+        const SUPABASE_KEY = "PASTE_PUBLISHABLE_KEY_HERE"; // never the secret key
+
+        const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const $ = id => document.getElementById(id);
+        const say = text => $("message").textContent = text;
+        const form = () => ({ email: $("email").value.trim(), password: $("password").value });
+
+        async function show() {
+            const { data: { session } } = await db.auth.getSession();
+            $("auth").hidden = !!session;
+            $("universe").hidden = !session;
+            $("list").replaceChildren();
+            if (!session) return;
+
+            const user = session.user;
+            $("who").textContent = user.email;
+            const profile = await db.from("profiles").upsert(
+                { id: user.id, display_name: user.email.split("@")[0] },
+                { onConflict: "id", ignoreDuplicates: true });
+            if (profile.error) return say(profile.error.message);
+
+            const { data, error } = await db.from("projects")
+                .select("title").eq("field_id", 5).order("created_at", { ascending: false });
+            if (error) return say(error.message);
+            for (const project of data) {
+                const li = document.createElement("li");
+                li.textContent = project.title;
+                $("list").append(li);
+            }
+        }
+
+        $("signup").onclick = async () => {
+            const { data, error } = await db.auth.signUp(form());
+            if (error) return say(error.message);
+            say(data.session ? "Account created." : "Check your email, confirm, then log in.");
+            show();
+        };
+        $("login").onclick = async () => {
+            const { error } = await db.auth.signInWithPassword(form());
+            say(error ? error.message : "");
+            show();
+        };
+        $("save").onclick = async () => {
+            const title = $("title").value.trim();
+            if (!title) return say("Write an idea first.");
+            const { error } = await db.from("projects").insert({ field_id: 5, title });
+            if (error) return say(error.message);
+            $("title").value = "";
+            say("Saved.");
+            show();
+        };
+        $("logout").onclick = async () => { await db.auth.signOut(); say(""); show(); };
+
+        show();
+    </script>
+</body>
+</html>
