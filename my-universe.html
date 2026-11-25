@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Universe | ASU.AI</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .workspace { max-width: 640px; margin: 0 auto; }
+        .workspace input, .workspace select { width: 100%; box-sizing: border-box; padding: 12px; margin: 6px 0; font-size: 16px; }
+        .workspace button { padding: 8px 16px; margin: 6px; cursor: pointer; }
+    </style>
 </head>
 <body>
 
@@ -21,7 +26,7 @@
             <a href="inventions.html">Invent</a>
             <a href="future.html">Future</a>
             <a href="my-universe.html" class="active">My Universe</a>
-            <a href="#" class="nav-button">Start Exploring</a>
+            <a href="login.html" class="nav-button">Account</a>
         </nav>
     </header>
 
@@ -35,8 +40,8 @@
                 discoveries and learning progress. Everything you create lives here.
             </p>
             <div class="hero-buttons">
-                <a href="#" class="primary-button">Create New Project</a>
-                <a href="#" class="secondary-button">View Saved Work</a>
+                <a href="#workspace" class="primary-button">Create New Project</a>
+                <a href="#workspace" class="secondary-button">View Saved Work</a>
             </div>
         </div>
     </section>
@@ -98,23 +103,19 @@
         </div>
     </section>
 
-    <!-- Coming Soon -->
-    <section class="ai-section">
+    <!-- Workspace -->
+    <section class="ai-section" id="workspace">
         <div class="section-label">WORKSPACE</div>
-        <h2>My Universe is Coming Soon</h2>
-        <p>
-            This personal workspace will be available in Phase 1. 
-            You will be able to save projects, experiments and discoveries across all six fields.
-        </p>
-        
-        <div class="ai-modes">
-            <div class="ai-mode">Projects</div>
-            <div class="ai-mode">Experiments</div>
-            <div class="ai-mode">Research Notes</div>
-            <div class="ai-mode">Progress Tracking</div>
+        <h2>My Saved Work</h2>
+        <div class="workspace">
+            <p id="message">Loading...</p>
+            <div id="universe" hidden>
+                <select id="field"></select>
+                <input id="title" placeholder="Title of your work">
+                <button id="save">Save</button>
+                <div id="list"></div>
+            </div>
         </div>
-
-        <p class="coming-soon">COMING SOON IN PHASE 1</p>
     </section>
 
     <!-- Footer -->
@@ -125,5 +126,66 @@
         <p class="copyright">© 2026 ASU.AI — Explore. Experiment. Discover.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+    <script>
+        const SUPABASE_URL = "https://fanuyqvuuegpezsbevtp.supabase.co";
+        const SUPABASE_KEY = "PASTE_PUBLISHABLE_KEY_HERE"; // never the secret key
+
+        const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        const $ = id => document.getElementById(id);
+        const say = text => $("message").textContent = text;
+        const add = (parent, tag, text) => {
+            const el = document.createElement(tag);
+            el.textContent = text;
+            parent.append(el);
+            return el;
+        };
+        let fields = [];
+
+        async function show() {
+            const { data, error } = await db.from("projects")
+                .select("id, title, field_id").order("created_at", { ascending: false });
+            if (error) return say(error.message);
+            $("list").replaceChildren();
+            for (const field of fields) {
+                add($("list"), "h3", field.name);
+                const mine = data.filter(p => p.field_id === field.id);
+                if (!mine.length) add($("list"), "p", "Nothing saved yet.");
+                for (const project of mine) {
+                    const row = add($("list"), "p", project.title);
+                    add(row, "button", "Delete").onclick = async () => {
+                        if (!window.confirm("Delete this item?")) return;
+                        const result = await db.from("projects").delete().eq("id", project.id);
+                        if (result.error) return say(result.error.message);
+                        show();
+                    };
+                }
+            }
+        }
+
+        $("save").onclick = async () => {
+            const title = $("title").value.trim();
+            if (!title) return say("Write a title first.");
+            const { error } = await db.from("projects")
+                .insert({ field_id: Number($("field").value), title });
+            if (error) return say(error.message);
+            $("title").value = "";
+            say("Saved.");
+            show();
+        };
+
+        async function start() {
+            const { data: { session } } = await db.auth.getSession();
+            if (!session) { location.href = "login.html"; return; }
+            const { data, error } = await db.from("fields").select("id, name").order("id");
+            if (error) return say(error.message);
+            fields = data;
+            for (const f of fields) add($("field"), "option", f.name).value = f.id;
+            $("universe").hidden = false;
+            say("");
+            show();
+        }
+        start();
+    </script>
 </body>
 </html>
