@@ -1,142 +1,305 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASU.AI — AI Science Universe</title>
-    <meta name="description" content="Explore science, experiment with ideas, discover knowledge and create the future with ASU.AI.">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ASU.AI — AI Science Universe</title>
+  <meta name="description" content="Explore physics, science, technology, research, experiments and the future with ASU.AI.">
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <a href="index.html" class="logo">ASU<span>.AI</span></a>
+  <!-- NAVIGATION -->
+  <header class="navbar">
+    <a href="#" class="logo">
+      <span class="logo-symbol">⚛</span>
+      <span>ASU.<span class="blue">AI</span></span>
+    </a>
 
-        <nav>
-            <a href="index.html" class="active">Home</a>
-            <a href="unknown.html">Explore</a>
-            <a href="experiments.html">Experiments</a>
-            <a href="connections.html">Connections</a>
-            <a href="research.html">Research</a>
-            <a href="inventions.html">Invent</a>
-            <a href="future.html">Future</a>
-            <a href="my-universe.html">My Universe</a>
-            <a href="#" class="nav-button">Start Exploring</a>
-        </nav>
-    </header>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+      ☰
+    </button>
 
-    <!-- HERO SECTION -->
+    <nav id="navMenu">
+      <a href="#home">Home</a>
+      <a href="#fields">Explore</a>
+      <a href="#fields">Experiments</a>
+      <a href="#fields">Research</a>
+      <a href="#future">Future</a>
+    </nav>
+
+    <a href="#fields" class="nav-button">Get Started</a>
+  </header>
+
+
+  <!-- HERO SECTION -->
+  <main>
+
     <section class="hero" id="home">
-        <div class="hero-content">
-            <p class="hero-label">WELCOME TO THE AI SCIENCE UNIVERSE</p>
 
-            <h1>
-                Explore the Unknown.<br>
-                <span>Discover the Universe.</span>
-            </h1>
+      <div class="hero-content">
 
-            <p class="hero-description">
-                Explore science, experiment with ideas, discover
-                hidden connections and create the future with AI.
-            </p>
-
-            <div class="hero-buttons">
-                <a href="unknown.html" class="primary-button">Explore the Universe</a>
-                <a href="research.html" class="secondary-button">Discover ASU.AI</a>
-            </div>
+        <div class="eyebrow">
+          <span class="status-dot"></span>
+          AI SCIENCE UNIVERSE
         </div>
 
-        <div class="hero-decoration">
-            <div class="orbit orbit-one"></div>
-            <div class="orbit orbit-two"></div>
-            <div class="planet">✦</div>
-        </div>
-    </section>
+        <h1>
+          Discover.<br>
+          <span class="gradient-text">Learn. Innovate.</span>
+        </h1>
 
-    <!-- INTRODUCTION -->
-    <section class="introduction">
-        <p class="section-label">A NEW WAY TO EXPLORE SCIENCE</p>
-        <h2>More Than Just an AI Chatbot</h2>
-        <p>
-            ASU.AI is an integrated science exploration and
-            innovation platform where learning, experimentation,
-            research and creativity come together.
-        </p>
-    </section>
-
-    <!-- SIX CORE FIELDS -->
-    <section class="fields" id="explore">
-        <div class="section-heading">
-            <p class="section-label">EXPLORE YOUR UNIVERSE</p>
-            <h2>Six Worlds of Discovery</h2>
-            <p>One platform. Six powerful ways to explore science.</p>
-        </div>
-
-        <div class="field-container">
-
-            <article class="field-card">
-                <div class="field-icon">🌌</div>
-                <h3>Explore the Unknown</h3>
-                <p>Discover space, galaxies, black holes, astronomy and the mysteries of physics.</p>
-                <a href="unknown.html">Explore Field →</a>
-            </article>
-
-            <article class="field-card">
-                <div class="field-icon">🧪</div>
-                <h3>Learn by Experiment</h3>
-                <p>Experience virtual Physics, Chemistry and Biology laboratories.</p>
-                <a href="experiments.html">Explore Field →</a>
-            </article>
-
-            <article class="field-card">
-                <div class="field-icon">🔗</div>
-                <h3>Discover Hidden Connections</h3>
-                <p>Connect scientific ideas through knowledge graphs and concept maps.</p>
-                <a href="connections.html">Explore Field →</a>
-            </article>
-
-            <article class="field-card">
-                <div class="field-icon">🤖</div>
-                <h3>AI Research Companion</h3>
-                <p>Organize research, analyze data, explore papers and discover knowledge.</p>
-                <a href="research.html">Explore Field →</a>
-            </article>
-
-            <article class="field-card">
-                <div class="field-icon">💡</div>
-                <h3>Invent Something New</h3>
-                <p>Transform creative ideas into engineering projects and inventions.</p>
-                <a href="inventions.html">Explore Field →</a>
-            </article>
-
-            <article class="field-card">
-                <div class="field-icon">🚀</div>
-                <h3>Understand the Future</h3>
-                <p>Explore artificial intelligence, robotics, biotechnology and future technology.</p>
-                <a href="future.html">Explore Field →</a>
-            </article>
-
-        </div>
-    </section>
-
-    <!-- AI INTELLIGENCE ENGINE -->
-    <section class="ai-section">
-        <p class="section-label">THE HEART OF ASU.AI</p>
-        <h2>Meet the AI Intelligence Engine</h2>
-        <p>
-            An intelligent science companion designed to
-            help you understand, explore, experiment,
-            research and create.
+        <p class="hero-description">
+          Explore the boundaries of physics, science and technology.
+          Connect ideas, experiment with knowledge and discover
+          the universe in a new way.
         </p>
 
-        <div class="ai-modes">
-            <div class="ai-mode">Explain</div>
-            <div class="ai-mode">Explore</div>
-            <div class="ai-mode">Experiment</div>
-            <div class="ai-mode">Research</div>
-            <div class="ai-mode">Create</div>
-            <div class="ai-mode">Challenge</div>
+        <div class="hero-buttons">
+          <a href="#fields" class="primary-button">
+            Explore the Universe →
+          </a>
+
+          <a href="#fields" class="secondary-button">
+            Discover Our Fields
+          </a>
         </div>
 
-        <p class="coming-soon">AI 
+        <div class="hero-note">
+          <span>✦</span>
+          Six Fields of Scientific Discovery
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SIX MAIN FIELDS -->
+    <section class="fields-section" id="fields">
+
+      <div class="section-heading">
+
+        <span class="section-label">YOUR SCIENCE JOURNEY</span>
+
+        <h2>
+          Six Worlds of <span class="gradient-text">Discovery</span>
+        </h2>
+
+        <p>
+          One platform. Six powerful ways to explore science.
+        </p>
+
+      </div>
+
+
+      <!-- FIELD 1 -->
+      <article class="feature-card card-cosmos">
+
+        <div class="card-icon">🌌</div>
+
+        <div class="card-content">
+
+          <span class="card-number">FIELD 01</span>
+
+          <h3>Explore the Unknown</h3>
+
+          <p>
+            Discover space, galaxies, black holes, astronomy,
+            spacetime and the mysteries of physics.
+          </p>
+
+          <a href="#future" class="card-link">
+            Explore Field →
+          </a>
+
+        </div>
+
+        <div class="card-glow"></div>
+
+      </article>
+
+
+      <!-- FIELD 2 -->
+      <article class="feature-card card-lab">
+
+        <div class="card-icon">🧪</div>
+
+        <div class="card-content">
+
+          <span class="card-number">FIELD 02</span>
+
+          <h3>Learn by Experiment</h3>
+
+          <p>
+            Experience virtual Physics, Chemistry and Biology
+            laboratories through interactive learning.
+          </p>
+
+          <a href="#future" class="card-link">
+            Explore Field →
+          </a>
+
+        </div>
+
+        <div class="card-glow"></div>
+
+      </article>
+
+
+      <!-- FIELD 3 -->
+      <article class="feature-card card-connections">
+
+        <div class="card-icon">🔗</div>
+
+        <div class="card-content">
+
+          <span class="card-number">FIELD 03</span>
+
+          <h3>Discover Hidden Connections</h3>
+
+          <p>
+            Connect scientific ideas through knowledge graphs,
+            concept maps and interdisciplinary thinking.
+          </p>
+
+          <a href="#future" class="card-link">
+            Explore Field →
+          </a>
+
+        </div>
+
+        <div class="card-glow"></div>
+
+      </article>
+
+
+      <!-- FIELD 4 -->
+      <article class="feature-card card-research">
+
+        <div class="card-icon">🔬</div>
+
+        <div class="card-content">
+
+          <span class="card-number">FIELD 04</span>
+
+          <h3>AI Research Companion</h3>
+
+          <p>
+            Explore research questions, scientific papers,
+            data analysis and knowledge discovery.
+          </p>
+
+          <a href="#future" class="card-link">
+            Explore Field →
+          </a>
+
+        </div>
+
+        <div class="card-glow"></div>
+
+      </article>
+
+
+      <!-- FIELD 5 -->
+      <article class="feature-card card-innovation">
+
+        <div class="card-icon">💡</div>
+
+        <div class="card-content">
+
+          <span class="card-number">FIELD 05</span>
+
+          <h3>Invent Something New</h3>
+
+          <p>
+            Transform ideas into engineering concepts,
+            creative designs and prototype projects.
+          </p>
+
+          <a href="#future" class="card-link">
+            Explore Field →
+          </a>
+
+        </div>
+
+        <div class="card-glow"></div>
+
+      </article>
+
+
+      <!-- FIELD 6 -->
+      <article class="feature-card card-future" id="future">
+
+        <div class="card-icon">🤖</div>
+
+        <div class="card-content">
+
+          <span class="card-number">FIELD 06</span>
+
+          <h3>Understand the Future</h3>
+
+          <p>
+            Discover artificial intelligence, robotics,
+            biotechnology, future energy and emerging technology.
+          </p>
+
+          <a href="#home" class="card-link">
+            Explore Field →
+          </a>
+
+        </div>
+
+        <div class="card-glow"></div>
+
+      </article>
+
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+
+    <a href="#home" class="logo footer-logo">
+      <span class="logo-symbol">⚛</span>
+      <span>ASU.<span class="blue">AI</span></span>
+    </a>
+
+    <p>AI Science Universe</p>
+
+    <p class="copyright">
+      © 2026 ASU.AI — All rights reserved.
+    </p>
+
+    <p class="footer-credit">
+      Built for curiosity, discovery and innovation.
+    </p>
+
+  </footer>
+
+
+  <!-- MOBILE MENU SCRIPT -->
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    menuToggle.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+    });
+
+    navMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("active");
+      });
+    });
+  </script>
+
+</body>
+</html>
