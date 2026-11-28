@@ -1,0 +1,518 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chemistry | ASU.AI</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #030712;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+#networkCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.glow {
+    position: fixed;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(130px);
+    opacity: 0.16;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.glow1 {
+    background: #0088ff;
+    top: -200px;
+    left: -150px;
+}
+
+.glow2 {
+    background: #a855f7;
+    bottom: -200px;
+    right: -150px;
+}
+
+.glow3 {
+    background: #ff7a18;
+    top: 40%;
+    left: 40%;
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: auto;
+    padding: 30px 20px 80px;
+}
+
+.back {
+    display: inline-block;
+    text-decoration: none;
+    color: #b9d8ff;
+    border: 1px solid rgba(100,180,255,0.3);
+    background: rgba(10,30,60,0.5);
+    padding: 10px 18px;
+    border-radius: 30px;
+    margin-bottom: 35px;
+    transition: 0.3s;
+}
+
+.back:hover {
+    background: rgba(30,100,180,0.3);
+    box-shadow: 0 0 20px rgba(0,140,255,0.3);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.tag {
+    color: #67c5ff;
+    letter-spacing: 4px;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.header h1 {
+    font-size: clamp(35px, 6vw, 70px);
+    margin-bottom: 18px;
+    background: linear-gradient(90deg, #60a5fa, #c084fc, #f0abfc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.header p {
+    color: #b4c7df;
+    font-size: 16px;
+    max-width: 750px;
+    margin: auto;
+    line-height: 1.8;
+}
+
+/* CHEMISTRY VISUALS */
+
+.visual-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.visual-card {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid rgba(120,180,255,0.18);
+    background: rgba(5,15,35,0.6);
+    box-shadow: 0 0 35px rgba(0,80,200,0.08);
+    transition: 0.4s;
+}
+
+.visual-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(120,180,255,0.5);
+}
+
+.visual-card canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.label {
+    position: absolute;
+    bottom: 18px;
+    left: 20px;
+    padding: 9px 15px;
+    border-radius: 30px;
+    background: rgba(3,10,25,0.75);
+    color: #d8eaff;
+    font-size: 12px;
+    letter-spacing: 1px;
+    border: 1px solid rgba(120,180,255,0.15);
+}
+
+/* CHEMISTRY CONTENT */
+
+.features {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.feature {
+    padding: 26px;
+    background: rgba(10,20,40,0.65);
+    border: 1px solid rgba(100,160,255,0.15);
+    border-radius: 18px;
+    backdrop-filter: blur(12px);
+    transition: 0.3s;
+}
+
+.feature:hover {
+    border-color: rgba(100,180,255,0.5);
+    box-shadow: 0 0 30px rgba(30,100,255,0.1);
+    transform: translateY(-3px);
+}
+
+.feature h2 {
+    color: #8acbff;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.feature p {
+    color: #b7c7dc;
+    line-height: 1.8;
+    font-size: 14px;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 45px;
+    color: #7188a8;
+    font-size: 12px;
+}
+
+@media (min-width: 750px) {
+    .visual-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .visual-card {
+        height: 230px;
+    }
+
+    .features {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .visual-card {
+        height: 210px;
+    }
+
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="networkCanvas"></canvas>
+
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+<div class="glow glow3"></div>
+
+<div class="container">
+
+<a href="index.html" class="back">← Back to ASU.AI</a>
+
+<header class="header">
+
+<div class="tag">ASU.AI SCIENCE UNIVERSE</div>
+
+<h1>Chemistry</h1>
+
+<p>
+Explore the molecular world. Discover atoms, chemical bonds,
+reactions, elements and the hidden structures that transform
+matter into everything around us.
+</p>
+
+</header>
+
+<section class="visual-grid">
+
+<div class="visual-card">
+<canvas class="molecule"></canvas>
+<div class="label">MOLECULAR STRUCTURES</div>
+</div>
+
+<div class="visual-card">
+<canvas class="molecule"></canvas>
+<div class="label">ATOMIC INTERACTIONS</div>
+</div>
+
+<div class="visual-card">
+<canvas class="molecule"></canvas>
+<div class="label">CHEMICAL REACTIONS</div>
+</div>
+
+</section>
+
+<section class="features">
+
+<div class="feature">
+<h2>01 — Atomic World</h2>
+<p>
+Explore atoms, electrons, protons, neutrons and the
+fundamental structure of matter.
+</p>
+</div>
+
+<div class="feature">
+<h2>02 — Chemical Bonds</h2>
+<p>
+Discover how atoms connect through ionic, covalent
+and metallic bonding to form molecules and materials.
+</p>
+</div>
+
+<div class="feature">
+<h2>03 — Reactions & Transformation</h2>
+<p>
+Explore how substances transform, interact and create
+new compounds through chemical reactions.
+</p>
+</div>
+
+<div class="feature">
+<h2>04 — Molecular Universe</h2>
+<p>
+Discover molecular geometry, chemical forces,
+organic chemistry and the complex systems of molecules.
+</p>
+</div>
+
+</section>
+
+<div class="footer">
+ASU.AI — AI SCIENCE UNIVERSE
+</div>
+
+</div>
+
+<script>
+
+/* BACKGROUND PARTICLES */
+
+const canvas = document.getElementById("networkCanvas");
+const ctx = canvas.getContext("2d");
+
+let particles = [];
+let width, height;
+
+function resizeBackground() {
+
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+
+    particles = [];
+
+    const count = Math.min(
+        100,
+        Math.floor((width * height) / 13000)
+    );
+
+    for (let i = 0; i < count; i++) {
+
+        particles.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.35,
+            vy: (Math.random() - 0.5) * 0.35,
+            radius: Math.random() * 2 + 1
+        });
+    }
+}
+
+function animateBackground() {
+
+    ctx.clearRect(0, 0, width, height);
+
+    particles.forEach((p, i) => {
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(90,160,255,0.45)";
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+
+            const q = particles[j];
+
+            const dx = p.x - q.x;
+            const dy = p.y - q.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < 110) {
+
+                ctx.beginPath();
+                ctx.moveTo(p.x, p.y);
+                ctx.lineTo(q.x, q.y);
+
+                ctx.strokeStyle =
+                    `rgba(80,150,255,${0.12 * (1 - dist / 110)})`;
+
+                ctx.stroke();
+            }
+        }
+    });
+
+    requestAnimationFrame(animateBackground);
+}
+
+resizeBackground();
+animateBackground();
+
+window.addEventListener("resize", resizeBackground);
+
+
+/* CHEMICAL MOLECULAR ANIMATION */
+
+document.querySelectorAll(".molecule").forEach((canvas, index) => {
+
+    const ctx = canvas.getContext("2d");
+
+    let nodes = [];
+    let w, h;
+
+    function createMolecule() {
+
+        const rect = canvas.parentElement.getBoundingClientRect();
+
+        w = canvas.width = rect.width;
+        h = canvas.height = rect.height;
+
+        nodes = [];
+
+        const count = index === 0 ? 24 : index === 1 ? 30 : 26;
+
+        for (let i = 0; i < count; i++) {
+
+            nodes.push({
+
+                x: Math.random() * w,
+                y: Math.random() * h,
+
+                vx: (Math.random() - 0.5) * 0.65,
+                vy: (Math.random() - 0.5) * 0.65,
+
+                r: Math.random() * 5 + 3,
+
+                color: index === 2
+                    ? "#ff9d43"
+                    : index === 1
+                    ? "#d86cff"
+                    : "#58caff"
+            });
+        }
+    }
+
+    function draw() {
+
+        ctx.clearRect(0, 0, w, h);
+
+        nodes.forEach((n, i) => {
+
+            n.x += n.vx;
+            n.y += n.vy;
+
+            if (n.x < 0 || n.x > w) n.vx *= -1;
+            if (n.y < 0 || n.y > h) n.vy *= -1;
+
+            for (let j = i + 1; j < nodes.length; j++) {
+
+                const m = nodes[j];
+
+                const dx = n.x - m.x;
+                const dy = n.y - m.y;
+
+                const dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < 125) {
+
+                    const opacity = 1 - dist / 125;
+
+                    ctx.beginPath();
+                    ctx.moveTo(n.x, n.y);
+                    ctx.lineTo(m.x, m.y);
+
+                    ctx.strokeStyle =
+                        `rgba(100,180,255,${opacity * 0.45})`;
+
+                    ctx.lineWidth = 1.2;
+                    ctx.stroke();
+                }
+            }
+        });
+
+        nodes.forEach(n => {
+
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+
+            const gradient = ctx.createRadialGradient(
+                n.x - n.r / 3,
+                n.y - n.r / 3,
+                1,
+                n.x,
+                n.y,
+                n.r * 2.5
+            );
+
+            gradient.addColorStop(0, "#ffffff");
+            gradient.addColorStop(0.25, n.color);
+            gradient.addColorStop(1, "rgba(0,30,80,0)");
+
+            ctx.fillStyle = gradient;
+
+            ctx.shadowBlur = 20;
+            ctx.shadowColor = n.color;
+
+            ctx.fill();
+
+            ctx.shadowBlur = 0;
+        });
+
+        requestAnimationFrame(draw);
+    }
+
+    createMolecule();
+    draw();
+
+    window.addEventListener("resize", createMolecule);
+
+});
+
+</script>
+
+</body>
+</html>
