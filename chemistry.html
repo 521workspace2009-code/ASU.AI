@@ -4,6 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Chemistry | ASU.AI</title>
 
 <style>
@@ -36,7 +37,7 @@ body {
     height: 500px;
     border-radius: 50%;
     filter: blur(130px);
-    opacity: 0.16;
+    opacity: 0.14;
     pointer-events: none;
     z-index: 0;
 }
@@ -62,7 +63,7 @@ body {
 .container {
     position: relative;
     z-index: 2;
-    max-width: 1100px;
+    max-width: 1150px;
     margin: auto;
     padding: 30px 20px 80px;
 }
@@ -76,7 +77,6 @@ body {
     padding: 10px 18px;
     border-radius: 30px;
     margin-bottom: 35px;
-    transition: 0.3s;
 }
 
 .back:hover {
@@ -86,7 +86,7 @@ body {
 
 .header {
     text-align: center;
-    margin-bottom: 45px;
+    margin-bottom: 50px;
 }
 
 .tag {
@@ -113,29 +113,22 @@ body {
     line-height: 1.8;
 }
 
-/* CHEMISTRY VISUALS */
+/* VISUAL CARDS */
 
 .visual-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: 24px;
-    margin-bottom: 40px;
+    margin-bottom: 55px;
 }
 
 .visual-card {
     position: relative;
-    height: 260px;
+    height: 250px;
     overflow: hidden;
     border-radius: 20px;
     border: 1px solid rgba(120,180,255,0.18);
     background: rgba(5,15,35,0.6);
-    box-shadow: 0 0 35px rgba(0,80,200,0.08);
-    transition: 0.4s;
-}
-
-.visual-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(120,180,255,0.5);
 }
 
 .visual-card canvas {
@@ -157,7 +150,110 @@ body {
     border: 1px solid rgba(120,180,255,0.15);
 }
 
-/* CHEMISTRY CONTENT */
+/* SECTION */
+
+.section-title {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section-title small {
+    color: #67c5ff;
+    letter-spacing: 3px;
+}
+
+.section-title h2 {
+    font-size: clamp(26px, 4vw, 40px);
+    margin: 15px 0;
+}
+
+.section-title p {
+    color: #9db3cc;
+    line-height: 1.7;
+}
+
+/* ELEMENT EXPLORER */
+
+.explorer {
+    background: rgba(8,20,40,0.75);
+    border: 1px solid rgba(100,160,255,0.2);
+    border-radius: 24px;
+    padding: 30px;
+    backdrop-filter: blur(15px);
+    margin-bottom: 50px;
+}
+
+.element-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.element {
+    cursor: pointer;
+    border: 1px solid rgba(100,160,255,0.2);
+    border-radius: 14px;
+    padding: 16px 8px;
+    text-align: center;
+    background: rgba(15,30,60,0.65);
+    color: white;
+    transition: 0.3s;
+}
+
+.element:hover {
+    transform: translateY(-4px);
+    border-color: #60a5fa;
+    box-shadow: 0 0 20px rgba(60,130,255,0.2);
+}
+
+.element.active {
+    border-color: #60a5fa;
+    background: rgba(30,90,180,0.3);
+    box-shadow: 0 0 20px rgba(60,130,255,0.2);
+}
+
+.element .symbol {
+    font-size: 32px;
+    font-weight: bold;
+    color: #7dc5ff;
+}
+
+.element .number {
+    font-size: 11px;
+    color: #8ea8c8;
+}
+
+.element .name {
+    font-size: 12px;
+    margin-top: 8px;
+}
+
+.element-info {
+    margin-top: 25px;
+    padding: 25px;
+    border-radius: 18px;
+    background: rgba(5,12,30,0.8);
+    border: 1px solid rgba(100,160,255,0.2);
+    min-height: 190px;
+}
+
+.element-info h3 {
+    font-size: 30px;
+    color: #7dc5ff;
+    margin-bottom: 10px;
+}
+
+.element-info p {
+    color: #b7c7dc;
+    line-height: 1.8;
+    margin-bottom: 10px;
+}
+
+.info-label {
+    color: #67c5ff;
+}
+
+/* TOPICS */
 
 .features {
     display: grid;
@@ -170,7 +266,6 @@ body {
     background: rgba(10,20,40,0.65);
     border: 1px solid rgba(100,160,255,0.15);
     border-radius: 18px;
-    backdrop-filter: blur(12px);
     transition: 0.3s;
 }
 
@@ -194,33 +289,43 @@ body {
 
 .footer {
     text-align: center;
-    margin-top: 45px;
+    margin-top: 50px;
     color: #7188a8;
     font-size: 12px;
 }
 
 @media (min-width: 750px) {
+
     .visual-grid {
         grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    .visual-card {
-        height: 230px;
     }
 
     .features {
         grid-template-columns: 1fr 1fr;
     }
+
+    .element-grid {
+        grid-template-columns: repeat(8, 1fr);
+    }
 }
 
 @media (max-width: 500px) {
-    .visual-card {
-        height: 210px;
-    }
 
     .container {
         padding-left: 15px;
         padding-right: 15px;
+    }
+
+    .explorer {
+        padding: 18px;
+    }
+
+    .element .symbol {
+        font-size: 26px;
+    }
+
+    .element .name {
+        font-size: 10px;
     }
 }
 </style>
@@ -245,12 +350,15 @@ body {
 <h1>Chemistry</h1>
 
 <p>
-Explore the molecular world. Discover atoms, chemical bonds,
-reactions, elements and the hidden structures that transform
-matter into everything around us.
+Explore the molecular world. Discover atoms, elements,
+chemical bonds and reactions. Step into the world of
+matter and its transformations.
 </p>
 
 </header>
+
+
+<!-- MOLECULAR VISUALS -->
 
 <section class="visual-grid">
 
@@ -266,34 +374,83 @@ matter into everything around us.
 
 <div class="visual-card">
 <canvas class="molecule"></canvas>
-<div class="label">CHEMICAL REACTIONS</div>
+<div class="label">CHEMICAL SYSTEMS</div>
 </div>
 
 </section>
+
+
+<!-- ELEMENT EXPLORER -->
+
+<section class="explorer">
+
+<div class="section-title">
+
+<small>INTERACTIVE DISCOVERY</small>
+
+<h2>Explore the Elements</h2>
+
+<p>
+Select an element to discover its atomic identity,
+properties and role in the world.
+</p>
+
+</div>
+
+<div class="element-grid" id="elementGrid"></div>
+
+<div class="element-info" id="elementInfo">
+
+<h3>H — Hydrogen</h3>
+
+<p>
+Select an element above to explore its properties.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- CHEMISTRY TOPICS -->
+
+<section class="section-title">
+
+<small>EXPLORE CHEMISTRY</small>
+
+<h2>Discover the Chemical Universe</h2>
+
+<p>
+Explore the fundamental ideas that explain
+how matter behaves and transforms.
+</p>
+
+</section>
+
 
 <section class="features">
 
 <div class="feature">
 <h2>01 — Atomic World</h2>
 <p>
-Explore atoms, electrons, protons, neutrons and the
-fundamental structure of matter.
+Explore atomic structure, electrons, protons,
+neutrons and the fundamental structure of matter.
 </p>
 </div>
 
 <div class="feature">
 <h2>02 — Chemical Bonds</h2>
 <p>
-Discover how atoms connect through ionic, covalent
-and metallic bonding to form molecules and materials.
+Discover how atoms connect through ionic,
+covalent and metallic bonding.
 </p>
 </div>
 
 <div class="feature">
 <h2>03 — Reactions & Transformation</h2>
 <p>
-Explore how substances transform, interact and create
-new compounds through chemical reactions.
+Explore how substances interact, transform
+and create new compounds through reactions.
 </p>
 </div>
 
@@ -301,7 +458,7 @@ new compounds through chemical reactions.
 <h2>04 — Molecular Universe</h2>
 <p>
 Discover molecular geometry, chemical forces,
-organic chemistry and the complex systems of molecules.
+organic chemistry and complex molecules.
 </p>
 </div>
 
@@ -313,9 +470,10 @@ ASU.AI — AI SCIENCE UNIVERSE
 
 </div>
 
+
 <script>
 
-/* BACKGROUND PARTICLES */
+/* BACKGROUND NETWORK */
 
 const canvas = document.getElementById("networkCanvas");
 const ctx = canvas.getContext("2d");
@@ -395,7 +553,7 @@ animateBackground();
 window.addEventListener("resize", resizeBackground);
 
 
-/* CHEMICAL MOLECULAR ANIMATION */
+/* MOLECULAR ANIMATION */
 
 document.querySelectorAll(".molecule").forEach((canvas, index) => {
 
@@ -509,6 +667,205 @@ document.querySelectorAll(".molecule").forEach((canvas, index) => {
     draw();
 
     window.addEventListener("resize", createMolecule);
+
+});
+
+
+/* ELEMENT EXPLORER */
+
+const elements = [
+
+    {
+        number: 1,
+        symbol: "H",
+        name: "Hydrogen",
+        mass: "1.008",
+        type: "Nonmetal",
+        description: "The lightest element. Hydrogen is found in stars and is a major component of water and many organic compounds."
+    },
+
+    {
+        number: 2,
+        symbol: "He",
+        name: "Helium",
+        mass: "4.0026",
+        type: "Noble gas",
+        description: "A very light noble gas with extremely low chemical reactivity. Helium is widely used in scientific applications."
+    },
+
+    {
+        number: 3,
+        symbol: "Li",
+        name: "Lithium",
+        mass: "6.94",
+        type: "Alkali metal",
+        description: "A lightweight alkali metal used in rechargeable battery technologies."
+    },
+
+    {
+        number: 4,
+        symbol: "Be",
+        name: "Beryllium",
+        mass: "9.0122",
+        type: "Alkaline earth metal",
+        description: "A lightweight metal with a high stiffness-to-weight ratio, used in specialized engineering applications."
+    },
+
+    {
+        number: 5,
+        symbol: "B",
+        name: "Boron",
+        mass: "10.81",
+        type: "Metalloid",
+        description: "A metalloid used in glass, materials science and many specialized chemical applications."
+    },
+
+    {
+        number: 6,
+        symbol: "C",
+        name: "Carbon",
+        mass: "12.011",
+        type: "Nonmetal",
+        description: "The foundation of organic chemistry. Carbon can form diverse structures and is essential to known life."
+    },
+
+    {
+        number: 7,
+        symbol: "N",
+        name: "Nitrogen",
+        mass: "14.007",
+        type: "Nonmetal",
+        description: "A major component of Earth's atmosphere and an essential element in proteins and nucleic acids."
+    },
+
+    {
+        number: 8,
+        symbol: "O",
+        name: "Oxygen",
+        mass: "15.999",
+        type: "Nonmetal",
+        description: "An important element in respiration, combustion, water and many chemical compounds."
+    },
+
+    {
+        number: 9,
+        symbol: "F",
+        name: "Fluorine",
+        mass: "18.998",
+        type: "Halogen",
+        description: "A highly reactive halogen. Fluorine compounds have applications in materials and dental health."
+    },
+
+    {
+        number: 10,
+        symbol: "Ne",
+        name: "Neon",
+        mass: "20.180",
+        type: "Noble gas",
+        description: "A noble gas known for its use in luminous signs and specialized lighting."
+    },
+
+    {
+        number: 11,
+        symbol: "Na",
+        name: "Sodium",
+        mass: "22.990",
+        type: "Alkali metal",
+        description: "An alkali metal that plays an important role in biological processes and common salts."
+    },
+
+    {
+        number: 12,
+        symbol: "Mg",
+        name: "Magnesium",
+        mass: "24.305",
+        type: "Alkaline earth metal",
+        description: "A lightweight metal and essential element involved in numerous biological processes."
+    },
+
+    {
+        number: 13,
+        symbol: "Al",
+        name: "Aluminium",
+        mass: "26.982",
+        type: "Metal",
+        description: "A lightweight, corrosion-resistant metal used extensively in construction, transportation and packaging."
+    },
+
+    {
+        number: 14,
+        symbol: "Si",
+        name: "Silicon",
+        mass: "28.085",
+        type: "Metalloid",
+        description: "A fundamental material in semiconductor technology, electronics and modern computing."
+    },
+
+    {
+        number: 15,
+        symbol: "P",
+        name: "Phosphorus",
+        mass: "30.974",
+        type: "Nonmetal",
+        description: "An essential element in DNA, RNA, ATP and biological energy transfer."
+    },
+
+    {
+        number: 16,
+        symbol: "S",
+        name: "Sulfur",
+        mass: "32.06",
+        type: "Nonmetal",
+        description: "An element found in proteins, minerals and many industrial chemical processes."
+    }
+];
+
+const grid = document.getElementById("elementGrid");
+const info = document.getElementById("elementInfo");
+
+elements.forEach((element, index) => {
+
+    const button = document.createElement("button");
+
+    button.className = "element" + (index === 0 ? " active" : "");
+
+    button.innerHTML = `
+        <div class="number">${element.number}</div>
+        <div class="symbol">${element.symbol}</div>
+        <div class="name">${element.name}</div>
+    `;
+
+    button.addEventListener("click", function() {
+
+        document.querySelectorAll(".element").forEach(el => {
+            el.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        info.innerHTML = `
+            <h3>${element.symbol} — ${element.name}</h3>
+
+            <p>
+                <span class="info-label">Atomic Number:</span>
+                ${element.number}
+            </p>
+
+            <p>
+                <span class="info-label">Atomic Mass:</span>
+                ${element.mass}
+            </p>
+
+            <p>
+                <span class="info-label">Classification:</span>
+                ${element.type}
+            </p>
+
+            <p>${element.description}</p>
+        `;
+    });
+
+    grid.appendChild(button);
 
 });
 
