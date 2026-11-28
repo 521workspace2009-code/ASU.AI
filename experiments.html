@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Learn by Experiment | ASU.AI</title>
+<meta name="description" content="Explore physics, chemistry, biology and engineering through scientific experimentation with ASU.AI.">
 
 <style>
 /* =========================================
@@ -416,6 +417,7 @@ nav a:hover {
     background: rgba(16,185,129,.1);
     filter: blur(50px);
     transition: .4s;
+    pointer-events: none;
 }
 
 .experiment-card:hover {
@@ -426,6 +428,37 @@ nav a:hover {
 
 .experiment-card:hover::before {
     background: rgba(34,211,238,.15);
+}
+
+/* PHYSICS CARD LINK */
+
+a.experiment-card-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.experiment-card-link:focus-visible {
+    outline: 2px solid #6ee7b7;
+    outline-offset: 5px;
+}
+
+.physics-entry {
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    margin-top: 20px;
+    color: #6ee7b7;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: .3s;
+}
+
+.experiment-card-link:hover .physics-entry {
+    color: #67e8f9;
+    transform: translateX(5px);
 }
 
 .card-icon {
@@ -669,7 +702,11 @@ footer a {
 
     <div class="experiment-grid">
 
-        <div class="experiment-card">
+        <!-- FIELD 1: PHYSICS -->
+
+        <a href="physics.html"
+           class="experiment-card experiment-card-link"
+           aria-label="Enter Physics Laboratory">
 
             <div class="card-icon">⚛️</div>
 
@@ -680,7 +717,13 @@ footer a {
                 optics and the physical laws governing our universe.
             </p>
 
-        </div>
+            <span class="physics-entry">
+                Enter Physics Laboratory →
+            </span>
+
+        </a>
+
+        <!-- FIELD 2: CHEMISTRY -->
 
         <div class="experiment-card">
 
@@ -695,6 +738,8 @@ footer a {
 
         </div>
 
+        <!-- FIELD 3: BIOLOGY -->
+
         <div class="experiment-card">
 
             <div class="card-icon">🧬</div>
@@ -707,6 +752,8 @@ footer a {
             </p>
 
         </div>
+
+        <!-- FIELD 4: ASTRONOMY -->
 
         <div class="experiment-card">
 
@@ -721,6 +768,8 @@ footer a {
 
         </div>
 
+        <!-- FIELD 5: ENGINEERING -->
+
         <div class="experiment-card">
 
             <div class="card-icon">💡</div>
@@ -733,6 +782,8 @@ footer a {
             </p>
 
         </div>
+
+        <!-- FIELD 6: EARTH SCIENCE -->
 
         <div class="experiment-card">
 
