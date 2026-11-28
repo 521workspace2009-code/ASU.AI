@@ -1,129 +1,1035 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Research Companion | ASU.AI</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Research | ASU.AI</title>
+
+<style>
+
+/* =========================================
+   ASU.AI - RESEARCH
+   DIGITAL SCIENTIFIC BACKGROUND
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #030712;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   FIXED BACKGROUND
+========================================= */
+
+#researchCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.background-glow {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: .16;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.glow-one {
+    width: 500px;
+    height: 500px;
+    background: #2563eb;
+    top: -200px;
+    left: -150px;
+}
+
+.glow-two {
+    width: 450px;
+    height: 450px;
+    background: #7c3aed;
+    bottom: -200px;
+    right: -150px;
+}
+
+.glow-three {
+    width: 350px;
+    height: 350px;
+    background: #0891b2;
+    top: 40%;
+    left: 35%;
+}
+
+/* SCANNING LINE */
+
+.scan-line {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(96,165,250,.8),
+        rgba(167,139,250,.8),
+        transparent
+    );
+    box-shadow: 0 0 20px rgba(96,165,250,.5);
+    z-index: 1;
+    pointer-events: none;
+    animation: scan 12s linear infinite;
+}
+
+@keyframes scan {
+    0% {
+        top: 0;
+        opacity: 0;
+    }
+
+    10% {
+        opacity: .8;
+    }
+
+    90% {
+        opacity: .8;
+    }
+
+    100% {
+        top: 100%;
+        opacity: 0;
+    }
+}
+
+/* CONTENT ABOVE BACKGROUND */
+
+.page-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 7%;
+    background: rgba(3,7,18,.8);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.logo {
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.logo span {
+    color: #60a5fa;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    color: #cbd5e1;
+    font-size: 13px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #60a5fa;
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 90px 20px;
+}
+
+.hero-tag {
+    padding: 10px 22px;
+    border: 1px solid rgba(96,165,250,.35);
+    background: rgba(37,99,235,.1);
+    border-radius: 30px;
+    color: #93c5fd;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(40px,7vw,85px);
+    line-height: 1.15;
+    max-width: 1100px;
+    width: 100%;
+    padding: 0 10px;
+    text-align: center;
+    overflow-wrap: break-word;
+    font-weight: 900;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #93c5fd,
+        #c4b5fd,
+        #ffffff
+    );
+
+    background-size: 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    animation: titleFlow 7s linear infinite;
+}
+
+@keyframes titleFlow {
+    to {
+        background-position: 200%;
+    }
+}
+
+.hero p {
+    max-width: 780px;
+    margin-top: 25px;
+    color: #aab8cc;
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+.btn {
+    padding: 14px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .3s;
+}
+
+.btn-primary {
+    color: white;
+    background: linear-gradient(135deg,#2563eb,#7c3aed);
+    box-shadow: 0 0 25px rgba(37,99,235,.25);
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 35px rgba(37,99,235,.45);
+}
+
+.btn-secondary {
+    color: white;
+    border: 1px solid rgba(255,255,255,.2);
+    background: rgba(255,255,255,.04);
+}
+
+.btn-secondary:hover {
+    background: rgba(255,255,255,.12);
+}
+
+/* =========================================
+   RESEARCH VISUAL
+========================================= */
+
+.research-visual {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin: 60px auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.research-core {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle at 30% 30%,
+        #ffffff,
+        #93c5fd,
+        #2563eb,
+        #172554
+    );
+
+    box-shadow:
+        0 0 30px #3b82f6,
+        0 0 80px rgba(37,99,235,.5),
+        0 0 140px rgba(124,58,237,.2);
+
+    animation: corePulse 4s ease-in-out infinite;
+}
+
+.research-orbit {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    border: 1px solid rgba(96,165,250,.4);
+    border-radius: 50%;
+    animation: rotateOrbit 15s linear infinite;
+}
+
+.research-orbit-two {
+    width: 260px;
+    height: 260px;
+    border-color: rgba(167,139,250,.3);
+    animation-duration: 22s;
+    animation-direction: reverse;
+}
+
+.research-orbit-three {
+    width: 160px;
+    height: 160px;
+    border-color: rgba(34,211,238,.35);
+    animation-duration: 10s;
+}
+
+.research-orbit::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #93c5fd;
+    box-shadow: 0 0 20px #3b82f6;
+}
+
+.research-orbit-two::before {
+    background: #c4b5fd;
+    box-shadow: 0 0 20px #8b5cf6;
+}
+
+.research-orbit-three::before {
+    background: #67e8f9;
+    box-shadow: 0 0 20px #22d3ee;
+}
+
+@keyframes rotateOrbit {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes corePulse {
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+/* =========================================
+   RESEARCH STATUS
+========================================= */
+
+.research-status {
+    position: absolute;
+    right: 7%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 230px;
+    padding: 22px;
+    border-radius: 15px;
+    background: rgba(3,7,18,.85);
+    border: 1px solid rgba(96,165,250,.25);
+    backdrop-filter: blur(12px);
+    text-align: left;
+    font-family: monospace;
+}
+
+.status-title {
+    color: #60a5fa;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.status-line {
+    color: #94a3b8;
+    font-size: 12px;
+    margin: 12px 0;
+}
+
+.status-line span {
+    color: #93c5fd;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #60a5fa;
+    box-shadow: 0 0 12px #60a5fa;
+    margin-right: 8px;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: .2;
+    }
+}
+
+/* =========================================
+   CONTENT SECTION
+========================================= */
+
+.section {
+    padding: 80px 7% 100px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-heading h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.section-heading p {
+    color: #94a3b8;
+    line-height: 1.8;
+}
+
+/* =========================================
+   RESEARCH CARDS
+========================================= */
+
+.research-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.research-card {
+    position: relative;
+    padding: 35px 28px;
+    border-radius: 20px;
+    background: rgba(5,10,22,.85);
+    border: 1px solid rgba(255,255,255,.09);
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+    transition: .35s;
+}
+
+.research-card::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(37,99,235,.1);
+    filter: blur(50px);
+    transition: .4s;
+}
+
+.research-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(96,165,250,.45);
+    box-shadow: 0 15px 40px rgba(37,99,235,.15);
+}
+
+.research-card:hover::before {
+    background: rgba(124,58,237,.15);
+}
+
+.card-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.research-card h3 {
+    font-size: 22px;
+    color: #bfdbfe;
+    margin-bottom: 15px;
+}
+
+.research-card p {
+    color: #aab6ca;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+/* =========================================
+   BANNER
+========================================= */
+
+.banner {
+    margin: 0 7% 100px;
+    padding: 65px 30px;
+    border-radius: 25px;
+
+    border: 1px solid rgba(96,165,250,.2);
+
+    background: linear-gradient(
+        135deg,
+        rgba(37,99,235,.12),
+        rgba(3,7,18,.85),
+        rgba(124,58,237,.12)
+    );
+
+    text-align: center;
+    backdrop-filter: blur(12px);
+}
+
+.banner h2 {
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+.banner p {
+    max-width: 750px;
+    margin: auto;
+    color: #cbd5e1;
+    line-height: 1.9;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    padding: 30px 20px;
+    text-align: center;
+    color: #64748b;
+    border-top: 1px solid rgba(255,255,255,.08);
+    font-size: 14px;
+}
+
+footer a {
+    color: #93c5fd;
+    text-decoration: none;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:1050px) {
+
+    .research-status {
+        display: none;
+    }
+
+    .research-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:650px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 18px 5%;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 11px;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 80px 15px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .research-visual {
+        transform: scale(.85);
+        margin: 30px auto;
+    }
+
+    .research-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading h2 {
+        font-size: 30px;
+    }
+
+    .banner {
+        margin: 0 5% 70px;
+        padding: 45px 20px;
+    }
+
+    .banner h2 {
+        font-size: 27px;
+    }
+
+}
+
+</style>
 </head>
+
 <body>
 
-    <!-- Header -->
-    <header>
-        <a href="index.html" class="logo">ASU<span>.AI</span></a>
+<!-- FIXED BACKGROUND -->
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="unknown.html">Explore</a>
-            <a href="experiments.html">Experiments</a>
-            <a href="connections.html">Connections</a>
-            <a href="research.html" class="active">Research</a>
-            <a href="inventions.html">Invent</a>
-            <a href="future.html">Future</a>
-            <a href="my-universe.html">My Universe</a>
-            <a href="#" class="nav-button">Start Exploring</a>
-        </nav>
-    </header>
+<canvas id="researchCanvas"></canvas>
 
-    <!-- Hero Section -->
-    <section class="hero" style="min-height: 420px; padding: 90px 8%;">
-        <div class="hero-content">
-            <div class="hero-label">CORE FIELD 4 / 6</div>
-            <h1>AI Research <span>Companion</span></h1>
-            <p class="hero-description">
-                Get AI-powered help for research, literature discovery, data analysis, 
-                scientific writing, citations and organizing your research projects.
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
+<div class="background-glow glow-three"></div>
+
+<div class="scan-line"></div>
+
+<!-- FOREGROUND CONTENT -->
+
+<div class="page-content">
+
+<!-- HEADER -->
+
+<header>
+
+    <a href="index.html" class="logo">
+        ASU<span>.AI</span>
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="unknown.html">Unknown</a>
+        <a href="experiments.html">Experiments</a>
+        <a href="connections.html">Connections</a>
+        <a href="research.html">Research</a>
+        <a href="inventions.html">Invent</a>
+        <a href="future.html">Future</a>
+    </nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-tag">
+        BEYOND OBSERVATION — INTO INVESTIGATION
+    </div>
+
+    <h1>Scientific Research</h1>
+
+    <p>
+        Explore the frontier of scientific knowledge.
+        Investigate unanswered questions, examine scientific ideas,
+        understand discoveries and explore the possibilities
+        that shape our understanding of reality.
+    </p>
+
+    <div class="buttons">
+
+        <a href="#research" class="btn btn-primary">
+            Explore Research
+        </a>
+
+        <a href="#investigation" class="btn btn-secondary">
+            Enter Research Space
+        </a>
+
+    </div>
+
+    <!-- RESEARCH VISUAL -->
+
+    <div class="research-visual">
+
+        <div class="research-orbit-two"></div>
+        <div class="research-orbit"></div>
+        <div class="research-orbit-three"></div>
+        <div class="research-core"></div>
+
+    </div>
+
+    <!-- STATUS PANEL -->
+
+    <div class="research-status">
+
+        <div class="status-title">
+            RESEARCH SYSTEM
+        </div>
+
+        <div class="status-line">
+            <span class="status-dot"></span>
+            ANALYSIS ACTIVE
+        </div>
+
+        <div class="status-line">
+            MODE: <span>INVESTIGATION</span>
+        </div>
+
+        <div class="status-line">
+            DATA: <span>EXPLORATION</span>
+        </div>
+
+        <div class="status-line">
+            SYSTEM: <span>ONLINE</span>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- RESEARCH TOPICS -->
+
+<section class="section" id="investigation">
+
+    <div class="section-heading">
+
+        <h2>Explore Research Fields</h2>
+
+        <p>
+            Explore scientific investigation across different
+            areas of knowledge.
+        </p>
+
+    </div>
+
+    <div class="research-grid" id="research">
+
+        <div class="research-card">
+
+            <div class="card-icon">⚛️</div>
+
+            <h3>Fundamental Physics</h3>
+
+            <p>
+                Explore the fundamental laws of nature,
+                quantum phenomena, matter, energy,
+                spacetime and the forces of the universe.
             </p>
-            <div class="hero-buttons">
-                <a href="#" class="primary-button">Start Research</a>
-                <a href="#" class="secondary-button">Search Papers</a>
-            </div>
-        </div>
-    </section>
 
-    <!-- Field Description -->
-    <section class="introduction">
-        <div class="section-label">FIELD CONCEPT</div>
-        <h2>Research & Analysis Workspace</h2>
-        <p>
-            This field acts as your intelligent research assistant. 
-            Organize research questions, find and summarize papers, analyze data, 
-            manage citations, and build structured research documents — all in one place.
-        </p>
-    </section>
-
-    <!-- What You Can Do -->
-    <section class="fields">
-        <div class="section-heading">
-            <div class="section-label">WHAT YOU CAN DO HERE</div>
-            <h2>Key Features</h2>
         </div>
 
-        <div class="field-container">
-            <div class="field-card">
-                <div class="field-icon">❓</div>
-                <h3>Research Questions</h3>
-                <p>Organize research questions, form hypotheses, and structure your investigation with AI guidance.</p>
-            </div>
+        <div class="research-card">
 
-            <div class="field-card">
-                <div class="field-icon">📄</div>
-                <h3>Paper Search & Summary</h3>
-                <p>Find relevant scientific papers from reliable sources and get clear AI-generated summaries.</p>
-            </div>
+            <div class="card-icon">🌌</div>
 
-            <div class="field-card">
-                <div class="field-icon">📊</div>
-                <h3>Data Analysis</h3>
-                <p>Analyze datasets, create visualizations, interpret results and get help understanding statistical findings.</p>
-            </div>
+            <h3>Cosmology</h3>
 
-            <div class="field-card">
-                <div class="field-icon">🔗</div>
-                <h3>Citation Management</h3>
-                <p>Manage references, generate citations, and keep your sources organized throughout the research process.</p>
-            </div>
+            <p>
+                Investigate the origins, evolution,
+                structure and possible future of
+                the universe.
+            </p>
 
-            <div class="field-card">
-                <div class="field-icon">📝</div>
-                <h3>Scientific Writing</h3>
-                <p>Get help drafting research notes, literature reviews, abstracts and structured research documents.</p>
-            </div>
-
-            <div class="field-card">
-                <div class="field-icon">📁</div>
-                <h3>Project Folders</h3>
-                <p>Save all research materials, notes, papers and drafts in organized project workspaces.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Mode -->
-    <section class="ai-section">
-        <div class="section-label">AI MODE</div>
-        <h2>Research Mode</h2>
-        <p>
-            ASU.AI will assist you throughout the research workflow — 
-            from forming questions and discovering literature to analysis and writing.
-        </p>
-        
-        <div class="ai-modes">
-            <div class="ai-mode">Literature Discovery</div>
-            <div class="ai-mode">Summarization</div>
-            <div class="ai-mode">Data Analysis</div>
-            <div class="ai-mode">Citation Help</div>
         </div>
 
-        <p class="coming-soon">COMING SOON IN PHASE 1</p>
-    </section>
+        <div class="research-card">
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-logo">ASU<span>.AI</span></div>
-        <p>AI-powered science exploration, research and innovation.</p>
-        <p>A ProtiQ Labs initiative</p>
-        <p class="copyright">© 2026 ASU.AI — Explore. Experiment. Discover.</p>
-    </footer>
+            <div class="card-icon">🧬</div>
+
+            <h3>Life Sciences</h3>
+
+            <p>
+                Explore biological systems, genetics,
+                cellular processes, evolution
+                and the complexity of life.
+            </p>
+
+        </div>
+
+        <div class="research-card">
+
+            <div class="card-icon">🧠</div>
+
+            <h3>Artificial Intelligence</h3>
+
+            <p>
+                Investigate machine learning,
+                intelligent systems, neural networks,
+                computational models and AI research.
+            </p>
+
+        </div>
+
+        <div class="research-card">
+
+            <div class="card-icon">🔬</div>
+
+            <h3>Advanced Materials</h3>
+
+            <p>
+                Explore materials science,
+                nanotechnology, superconductivity,
+                new structures and emerging materials.
+            </p>
+
+        </div>
+
+        <div class="research-card">
+
+            <div class="card-icon">🚀</div>
+
+            <h3>Space Exploration</h3>
+
+            <p>
+                Investigate space technologies,
+                planetary science, space missions,
+                extraterrestrial environments and exploration.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BANNER -->
+
+<section class="banner">
+
+    <h2>Every Discovery Begins with a Question</h2>
+
+    <p>
+        Research is the process of challenging what we know,
+        investigating what we do not understand and discovering
+        new possibilities through evidence, observation,
+        mathematics and scientific reasoning.
+    </p>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>© 2026 ASU.AI — AI Science Universe</p>
+
+    <p style="margin-top:10px;">
+        <a href="index.html">Return to Home</a>
+    </p>
+
+</footer>
+
+</div>
+
+<!-- BACKGROUND ANIMATION -->
+
+<script>
+
+const canvas = document.getElementById("researchCanvas");
+const ctx = canvas.getContext("2d");
+
+let width;
+let height;
+let particles = [];
+
+const equations = [
+    "E = mc²",
+    "F = ma",
+    "∇ × E = -∂B/∂t",
+    "H = p²/2m",
+    "ΔxΔp ≥ ħ/2",
+    "iħ∂ψ/∂t",
+    "a² + b² = c²",
+    "PV = nRT",
+    "∑ F = 0",
+    "λ = h/p",
+    "Gμν = 8πTμν",
+    "c = λν"
+];
+
+function resizeCanvas() {
+
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.width = width;
+    canvas.height = height;
+
+    createParticles();
+
+}
+
+function createParticles() {
+
+    particles = [];
+
+    const count = Math.min(
+        100,
+        Math.floor(width * height / 10000)
+    );
+
+    for(let i = 0; i < count; i++) {
+
+        particles.push({
+
+            x: Math.random() * width,
+            y: Math.random() * height,
+
+            vx: (Math.random() - .5) * .25,
+            vy: (Math.random() - .5) * .25,
+
+            radius: Math.random() * 2 + .5,
+
+            opacity: Math.random() * .5 + .2
+
+        });
+
+    }
+
+}
+
+function drawParticles() {
+
+    ctx.clearRect(0,0,width,height);
+
+    /* PARTICLES */
+
+    for(let p of particles) {
+
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if(p.x < 0 || p.x > width) p.vx *= -1;
+        if(p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.beginPath();
+
+        ctx.arc(
+            p.x,
+            p.y,
+            p.radius,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle =
+            `rgba(96,165,250,${p.opacity})`;
+
+        ctx.fill();
+
+    }
+
+    /* PARTICLE CONNECTIONS */
+
+    for(let i = 0; i < particles.length; i++) {
+
+        for(let j = i + 1; j < particles.length; j++) {
+
+            const a = particles[i];
+            const b = particles[j];
+
+            const dx = a.x - b.x;
+            const dy = a.y - b.y;
+
+            const distance = Math.sqrt(dx*dx + dy*dy);
+
+            if(distance < 120) {
+
+                ctx.beginPath();
+
+                ctx.moveTo(a.x,a.y);
+                ctx.lineTo(b.x,b.y);
+
+                ctx.strokeStyle =
+                    `rgba(96,165,250,${.12 * (1-distance/120)})`;
+
+                ctx.lineWidth = .7;
+
+                ctx.stroke();
+
+            }
+
+        }
+
+    }
+
+    /* FLOATING EQUATIONS */
+
+    for(let i = 0; i < equations.length; i++) {
+
+        const x = (i * 173 + 80) % width;
+        const y = (i * 227 + 120) % height;
+
+        const drift = Math.sin(Date.now() * .0005 + i) * 15;
+
+        ctx.font = "16px Arial";
+
+        ctx.fillStyle =
+            "rgba(147,197,253,.16)";
+
+        ctx.fillText(
+            equations[i],
+            x,
+            y + drift
+        );
+
+    }
+
+    requestAnimationFrame(drawParticles);
+
+}
+
+window.addEventListener("resize",resizeCanvas);
+
+resizeCanvas();
+drawParticles();
+
+</script>
 
 </body>
 </html>
