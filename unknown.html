@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,126 +6,383 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore the Unknown | ASU.AI</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .cosmos-hero {
+            text-align: center;
+            padding: 85px 20px 55px;
+        }
+
+        .cosmos-hero h1 {
+            font-size: clamp(36px, 6vw, 65px);
+            line-height: 1.2;
+            margin: 20px 0;
+        }
+
+        .cosmos-hero p {
+            color: #9aabc0;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .cosmos-container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 20px 20px 100px;
+        }
+
+        .cosmos-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .cosmos-box {
+            padding: 30px;
+            background: rgba(10,19,33,0.83);
+            border: 1px solid rgba(0,217,255,0.17);
+            border-radius: 18px;
+            transition: 0.3s;
+        }
+
+        .cosmos-box:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0,217,255,0.45);
+            box-shadow: 0 10px 35px rgba(0,217,255,0.06);
+        }
+
+        .cosmos-box .icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .cosmos-box h2 {
+            font-size: 22px;
+            margin-bottom: 12px;
+            color: #f1f5f9;
+        }
+
+        .cosmos-box p {
+            color: #9aabc0;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .cosmos-box a {
+            color: #00d9ff;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .cosmos-box a:hover {
+            text-shadow: 0 0 10px rgba(0,217,255,0.4);
+        }
+
+        .cosmos-wide {
+            grid-column: 1 / -1;
+        }
+
+        .cosmos-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .cosmos-topics span {
+            border: 1px solid rgba(0,217,255,0.18);
+            background: rgba(0,217,255,0.05);
+            padding: 8px 13px;
+            border-radius: 30px;
+            color: #cbd5e1;
+            font-size: 13px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #00d9ff;
+            text-decoration: none;
+        }
+
+        @media(max-width: 700px) {
+            .cosmos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cosmos-wide {
+                grid-column: auto;
+            }
+
+            .cosmos-box {
+                padding: 24px;
+            }
+
+            .cosmos-hero {
+                padding: 60px 20px 40px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <!-- Header -->
-    <header>
-        <a href="index.html" class="logo">ASU<span>.AI</span></a>
+    <!-- NAVIGATION -->
+    <header class="navbar">
 
-        <nav>
+        <a href="index.html" class="logo">
+            <span class="logo-symbol">✳</span>
+            <span>ASU<span class="blue">.AI</span></span>
+        </a>
+
+        <button class="menu-toggle" id="menuToggle">
+            ☰
+        </button>
+
+        <nav id="mobileNav">
             <a href="index.html">Home</a>
-            <a href="unknown.html" class="active">Explore</a>
+            <a href="index.html#fields">Explore</a>
             <a href="experiments.html">Experiments</a>
-            <a href="connections.html">Connections</a>
             <a href="research.html">Research</a>
-            <a href="inventions.html">Invent</a>
             <a href="future.html">Future</a>
-            <a href="my-universe.html">My Universe</a>
-            <a href="#" class="nav-button">Start Exploring</a>
         </nav>
+
+        <a href="index.html#fields" class="nav-button">
+            All Fields
+        </a>
+
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" style="min-height: 420px; padding: 90px 8%;">
+
+    <!-- COSMOS INTRO -->
+    <section class="cosmos-hero">
+
         <div class="hero-content">
-            <div class="hero-label">CORE FIELD 1 / 6</div>
-            <h1>Explore the <span>Unknown</span></h1>
-            <p class="hero-description">
-                Dive into the mysteries of the universe — from black holes to galaxies, 
-                spacetime, modern physics and the fundamental laws that shape reality.
+
+            <div class="eyebrow">
+                <span class="status-dot"></span>
+                FIELD 01 / COSMOS
+            </div>
+
+            <h1>
+                Explore the<br>
+                <span class="gradient-text">Unknown</span>
+            </h1>
+
+            <p>
+                Journey through space, time, matter and the mysteries
+                of the universe. Discover the forces that shape reality.
             </p>
-            <div class="hero-buttons">
-                <a href="#" class="primary-button">Start Exploring</a>
-                <a href="#" class="secondary-button">View Universe Map</a>
-            </div>
+
         </div>
+
     </section>
 
-    <!-- Field Description -->
-    <section class="introduction">
-        <div class="section-label">FIELD CONCEPT</div>
-        <h2>Physics & Space Science</h2>
-        <p>
-            This field lets you explore the deepest questions of the cosmos. 
-            Discover black holes, galaxies, spacetime, modern physics concepts 
-            and scientific mysteries through guided exploration and visual explanations.
+
+    <!-- COSMOS DASHBOARD -->
+    <main class="cosmos-container">
+
+        <a href="index.html" class="back-link">
+            ← Back to ASU.AI Universe
+        </a>
+
+        <div class="cosmos-grid">
+
+
+            <!-- SPACE -->
+            <article class="cosmos-box">
+
+                <div class="icon">🌌</div>
+
+                <h2>Space & Universe</h2>
+
+                <p>
+                    Explore the cosmic landscape, galaxies,
+                    nebulae, stars and the vast universe.
+                </p>
+
+                <a href="#topics">
+                    Discover the cosmos →
+                </a>
+
+            </article>
+
+
+            <!-- BLACK HOLES -->
+            <article class="cosmos-box">
+
+                <div class="icon">🕳️</div>
+
+                <h2>Black Holes</h2>
+
+                <p>
+                    Discover gravity, event horizons, spacetime
+                    and the mysterious objects of the cosmos.
+                </p>
+
+                <a href="#topics">
+                    Explore black holes →
+                </a>
+
+            </article>
+
+
+            <!-- PHYSICS -->
+            <article class="cosmos-box">
+
+                <div class="icon">⚛️</div>
+
+                <h2>Fundamental Physics</h2>
+
+                <p>
+                    Explore the laws of motion, energy, matter,
+                    relativity and the foundations of reality.
+                </p>
+
+                <a href="#topics">
+                    Discover physics →
+                </a>
+
+            </article>
+
+
+            <!-- ASTRONOMY -->
+            <article class="cosmos-box">
+
+                <div class="icon">🔭</div>
+
+                <h2>Astronomy</h2>
+
+                <p>
+                    Explore planets, moons, solar systems,
+                    astronomical observations and celestial objects.
+                </p>
+
+                <a href="#topics">
+                    Explore astronomy →
+                </a>
+
+            </article>
+
+
+            <!-- QUANTUM -->
+            <article class="cosmos-box">
+
+                <div class="icon">🌀</div>
+
+                <h2>Quantum Universe</h2>
+
+                <p>
+                    Discover quantum mechanics, particles,
+                    uncertainty and the microscopic universe.
+                </p>
+
+                <a href="#topics">
+                    Enter quantum science →
+                </a>
+
+            </article>
+
+
+            <!-- COSMIC MYSTERIES -->
+            <article class="cosmos-box">
+
+                <div class="icon">✨</div>
+
+                <h2>Cosmic Mysteries</h2>
+
+                <p>
+                    Explore dark matter, dark energy, cosmic origins
+                    and unanswered questions about the universe.
+                </p>
+
+                <a href="#topics">
+                    Explore the mysteries →
+                </a>
+
+            </article>
+
+
+            <!-- TOPICS -->
+            <article class="cosmos-box cosmos-wide" id="topics">
+
+                <div class="icon">🧠</div>
+
+                <h2>Explore the Universe of Ideas</h2>
+
+                <p>
+                    The Cosmos field brings together different areas
+                    of physics and astronomy. These are the topics
+                    we will develop into interactive learning modules.
+                </p>
+
+                <div class="cosmos-topics">
+
+                    <span>Relativity</span>
+                    <span>Quantum Physics</span>
+                    <span>Astrophysics</span>
+                    <span>Cosmology</span>
+                    <span>Space Exploration</span>
+                    <span>Particle Physics</span>
+                    <span>Gravity</span>
+                    <span>Time</span>
+                    <span>Energy</span>
+                    <span>Stars</span>
+                    <span>Galaxies</span>
+                    <span>Planetary Science</span>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <a href="index.html" class="logo footer-logo">
+            <span class="logo-symbol">✳</span>
+            <span>ASU<span class="blue">.AI</span></span>
+        </a>
+
+        <p>AI Science Universe — Discover. Learn. Innovate.</p>
+
+        <p class="copyright">
+            © 2026 ASU.AI. Exploring the universe of knowledge.
         </p>
-    </section>
 
-    <!-- What You Can Do -->
-    <section class="fields">
-        <div class="section-heading">
-            <div class="section-label">WHAT YOU CAN DO HERE</div>
-            <h2>Key Features</h2>
-        </div>
-
-        <div class="field-container">
-            <div class="field-card">
-                <div class="field-icon">🌌</div>
-                <h3>Space Exploration</h3>
-                <p>Journey through the solar system, galaxies, nebulae and the large-scale structure of the universe.</p>
-            </div>
-
-            <div class="field-card">
-                <div class="field-icon">🕳️</div>
-                <h3>Black Holes & Spacetime</h3>
-                <p>Understand black holes, event horizons, gravitational waves and the nature of spacetime.</p>
-            </div>
-
-            <div class="field-card">
-                <div class="field-icon">⚛️</div>
-                <h3>Modern Physics</h3>
-                <p>Explore quantum mechanics, relativity, particle physics and the fundamental laws of nature.</p>
-            </div>
-
-            <div class="field-card">
-                <div class="field-icon">🔭</div>
-                <h3>Astronomy Tools</h3>
-                <p>Use interactive tools to visualize celestial objects, orbits, and cosmic phenomena.</p>
-            </div>
-
-            <div class="field-card">
-                <div class="field-icon">🗺️</div>
-                <h3>Interactive Universe Map</h3>
-                <p>Navigate an interactive map of the cosmos and discover connections between cosmic objects.</p>
-            </div>
-
-            <div class="field-card">
-                <div class="field-icon">📖</div>
-                <h3>Visual Explainers</h3>
-                <p>Learn complex ideas through clear visual explanations, guided tours and AI-powered insights.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Mode -->
-    <section class="ai-section">
-        <div class="section-label">AI MODE</div>
-        <h2>Explore Mode</h2>
-        <p>
-            ASU.AI will guide you through the mysteries of the universe — 
-            explaining concepts, showing visual explorations, and helping you 
-            discover scientific wonders step by step.
-        </p>
-        
-        <div class="ai-modes">
-            <div class="ai-mode">Space Exploration</div>
-            <div class="ai-mode">Modern Physics</div>
-            <div class="ai-mode">Visual Explainers</div>
-            <div class="ai-mode">Cosmic Mysteries</div>
-        </div>
-
-        <p class="coming-soon">COMING SOON IN PHASE 1</p>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-logo">ASU<span>.AI</span></div>
-        <p>AI-powered science exploration, research and innovation.</p>
-        <p>A ProtiQ Labs initiative</p>
-        <p class="copyright">© 2026 ASU.AI — Explore. Experiment. Discover.</p>
     </footer>
+
+
+    <!-- MOBILE MENU -->
+    <script>
+
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileNav = document.getElementById("mobileNav");
+
+        menuToggle.addEventListener("click", function () {
+            mobileNav.classList.toggle("active");
+
+            menuToggle.textContent =
+                mobileNav.classList.contains("active") ? "✕" : "☰";
+        });
+
+        mobileNav.querySelectorAll("a").forEach(function (link) {
+
+            link.addEventListener("click", function () {
+
+                mobileNav.classList.remove("active");
+                menuToggle.textContent = "☰";
+
+            });
+
+        });
+
+    </script>
 
 </body>
 </html>
