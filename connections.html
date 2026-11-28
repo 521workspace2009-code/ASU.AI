@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +6,368 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Discover Hidden Connections | ASU.AI</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* CONNECTIONS PAGE */
+
+        .connection-page {
+            --connection-cyan: #00e5ff;
+            --connection-blue: #168bff;
+            padding-bottom: 60px;
+        }
+
+        .connection-hero {
+            position: relative;
+            padding: 100px 8% 70px;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .connection-hero::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0,229,255,.13), transparent 70%);
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+
+        .connection-label {
+            color: #00e5ff;
+            letter-spacing: 3px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .connection-hero h1 {
+            font-size: clamp(32px, 6vw, 60px);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .connection-hero h1 span {
+            color: #00e5ff;
+        }
+
+        .connection-hero p {
+            max-width: 750px;
+            margin: auto;
+            color: #a9bdd5;
+            font-size: 17px;
+        }
+
+        .connection-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 30px;
+        }
+
+        .connection-buttons a,
+        .connection-buttons button {
+            text-decoration: none;
+            border: 1px solid #00e5ff;
+            background: #00b9e8;
+            color: #03111e;
+            padding: 14px 23px;
+            border-radius: 9px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .connection-buttons .outline {
+            background: transparent;
+            color: #00e5ff;
+        }
+
+        .connection-section {
+            padding: 45px 8%;
+        }
+
+        .connection-section-heading {
+            margin-bottom: 30px;
+        }
+
+        .connection-section-heading .mini-label {
+            color: #00e5ff;
+            letter-spacing: 2px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .connection-section-heading h2 {
+            font-size: clamp(26px, 4vw, 38px);
+            margin-top: 10px;
+        }
+
+        .connection-section-heading p {
+            color: #a9bdd5;
+            margin-top: 12px;
+            max-width: 750px;
+        }
+
+        /* SEARCH */
+
+        .connection-search-box {
+            margin-bottom: 30px;
+        }
+
+        .connection-search-box input {
+            width: 100%;
+            padding: 17px;
+            background: #0b1726;
+            color: white;
+            border: 1px solid #243b55;
+            border-radius: 12px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .connection-search-box input:focus {
+            border-color: #00e5ff;
+        }
+
+        /* FEATURE CARDS */
+
+        .connection-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .connection-feature-card {
+            background: linear-gradient(145deg, #10243b, #081320);
+            border: 1px solid #1c3954;
+            border-radius: 18px;
+            padding: 28px;
+            transition: .25s ease;
+            cursor: pointer;
+        }
+
+        .connection-feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #00e5ff;
+            box-shadow: 0 0 25px rgba(0,229,255,.08);
+        }
+
+        .connection-feature-card .icon {
+            font-size: 35px;
+            margin-bottom: 18px;
+        }
+
+        .connection-feature-card h3 {
+            color: #00cfff;
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .connection-feature-card p {
+            color: #a9bdd5;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .connection-feature-card .card-link {
+            color: #00e5ff;
+            display: inline-block;
+            margin-top: 18px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* SCIENCE EXPLORER */
+
+        .connection-explorer {
+            background: linear-gradient(145deg, #0b1929, #050b13);
+            border: 1px solid #1c3954;
+            border-radius: 22px;
+            padding: 35px;
+        }
+
+        .connection-topic-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .connection-topic {
+            border: 1px solid #243b55;
+            background: #0c1a29;
+            border-radius: 15px;
+            padding: 22px;
+        }
+
+        .connection-topic h3 {
+            color: #00e5ff;
+            margin-bottom: 12px;
+        }
+
+        .connection-topic p {
+            color: #a9bdd5;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .connection-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .connection-tag {
+            border: 1px solid #24516a;
+            color: #76eaff;
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        /* DETAIL PANEL */
+
+        .connection-detail-panel {
+            display: none;
+            margin-top: 25px;
+            padding: 25px;
+            border: 1px solid #00e5ff;
+            border-radius: 15px;
+            background: #071625;
+        }
+
+        .connection-detail-panel.active {
+            display: block;
+        }
+
+        .connection-detail-panel h3 {
+            color: #00e5ff;
+            margin-bottom: 12px;
+        }
+
+        .connection-detail-panel p {
+            color: #c0d3e5;
+            line-height: 1.8;
+        }
+
+        .connection-detail-panel button {
+            margin-top: 18px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            border: 1px solid #00e5ff;
+            background: transparent;
+            color: #00e5ff;
+            cursor: pointer;
+        }
+
+        /* AI SECTION */
+
+        .connection-ai {
+            text-align: center;
+            border: 1px solid #1c3954;
+            background: linear-gradient(145deg, #10243b, #081320);
+            border-radius: 22px;
+            padding: 45px 25px;
+        }
+
+        .connection-ai h2 {
+            font-size: 32px;
+            margin: 15px 0;
+        }
+
+        .connection-ai p {
+            max-width: 750px;
+            color: #a9bdd5;
+            margin: auto;
+            line-height: 1.8;
+        }
+
+        .connection-ai .coming-soon {
+            color: #00e5ff;
+            letter-spacing: 2px;
+            font-size: 12px;
+            margin-top: 25px;
+            font-weight: bold;
+        }
+
+        /* FOOTER */
+
+        .connection-footer {
+            text-align: center;
+            border-top: 1px solid #17293c;
+            padding: 40px 20px;
+            color: #8ea5bd;
+        }
+
+        .connection-footer .footer-logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .connection-footer .footer-logo span {
+            color: #00e5ff;
+        }
+
+        .connection-footer p {
+            margin-top: 10px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+            .connection-feature-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .connection-hero {
+                padding: 75px 6% 45px;
+            }
+
+            .connection-section {
+                padding: 35px 6%;
+            }
+
+            .connection-feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .connection-topic-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .connection-explorer {
+                padding: 20px;
+            }
+
+            .connection-feature-card {
+                padding: 23px;
+            }
+
+            .connection-ai h2 {
+                font-size: 26px;
+            }
+
+            .connection-buttons a,
+            .connection-buttons button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-    <!-- Header -->
+<div class="connection-page">
+
+    <!-- HEADER -->
     <header>
         <a href="index.html" class="logo">ASU<span>.AI</span></a>
 
@@ -25,105 +384,359 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" style="min-height: 420px; padding: 90px 8%;">
-        <div class="hero-content">
-            <div class="hero-label">CORE FIELD 3 / 6</div>
-            <h1>Discover Hidden <span>Connections</span></h1>
-            <p class="hero-description">
-                Explore the connections between different branches of science. 
-                See how Physics, Chemistry, Biology, Mathematics and Computer Science are linked together.
+    <!-- HERO -->
+    <section class="connection-hero">
+
+        <div class="connection-label">CORE FIELD 3 / 6</div>
+
+        <h1>Discover Hidden <span>Connections</span></h1>
+
+        <p>
+            Science is not a collection of separate ideas.
+            Discover the invisible connections linking Physics,
+            Mathematics, Biology, Chemistry and Technology.
+        </p>
+
+        <div class="connection-buttons">
+            <a href="#science-explorer">Explore Connections</a>
+            <a href="#features" class="outline">Discover Features</a>
+        </div>
+
+    </section>
+
+    <!-- INTRODUCTION -->
+    <section class="connection-section">
+
+        <div class="connection-section-heading">
+            <div class="mini-label">THE BIGGER PICTURE</div>
+            <h2>Everything Is Connected</h2>
+            <p>
+                From the structure of atoms to the architecture of artificial intelligence,
+                scientific discoveries often emerge when seemingly unrelated ideas come together.
+                Explore how different disciplines shape our understanding of the universe.
             </p>
-            <div class="hero-buttons">
-                <a href="#" class="primary-button">Open Knowledge Graph</a>
-                <a href="#" class="secondary-button">View Concept Maps</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Field Description -->
-    <section class="introduction">
-        <div class="section-label">FIELD CONCEPT</div>
-        <h2>Interdisciplinary Science</h2>
-        <p>
-            This field helps you discover hidden relationships between scientific ideas. 
-            Use knowledge graphs, concept maps and cross-subject links to see the bigger picture 
-            and explore how different fields of science connect.
-        </p>
-    </section>
-
-    <!-- What You Can Do -->
-    <section class="fields">
-        <div class="section-heading">
-            <div class="section-label">WHAT YOU CAN DO HERE</div>
-            <h2>Key Features</h2>
         </div>
 
-        <div class="field-container">
-            <div class="field-card">
-                <div class="field-icon">🕸️</div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="connection-section" id="features">
+
+        <div class="connection-section-heading">
+            <div class="mini-label">WHAT YOU CAN EXPLORE</div>
+            <h2>Connection Tools</h2>
+            <p>
+                Six ways to uncover relationships, visualize scientific ideas
+                and develop interdisciplinary thinking.
+            </p>
+        </div>
+
+        <div class="connection-feature-grid">
+
+            <div class="connection-feature-card" onclick="showDetail('graph')">
+                <div class="icon">🕸️</div>
                 <h3>Knowledge Graph</h3>
-                <p>Visualize scientific concepts and their relationships in an interactive knowledge graph.</p>
+                <p>
+                    Visualize scientific concepts as a connected network
+                    of ideas, discoveries and disciplines.
+                </p>
+                <span class="card-link">Explore Tool →</span>
             </div>
 
-            <div class="field-card">
-                <div class="field-icon">🗺️</div>
+            <div class="connection-feature-card" onclick="showDetail('maps')">
+                <div class="icon">🗺️</div>
                 <h3>Concept Maps</h3>
-                <p>Create and explore concept maps that show how ideas from different subjects connect.</p>
+                <p>
+                    Organize complex knowledge into visual maps
+                    that reveal how scientific concepts relate.
+                </p>
+                <span class="card-link">Explore Tool →</span>
             </div>
 
-            <div class="field-card">
-                <div class="field-icon">🔗</div>
+            <div class="connection-feature-card" onclick="showDetail('subjects')">
+                <div class="icon">🔗</div>
                 <h3>Cross-Subject Links</h3>
-                <p>Discover links between Physics, Chemistry, Biology, Mathematics and Computer Science.</p>
+                <p>
+                    Discover how concepts in one discipline
+                    influence and explain ideas in another.
+                </p>
+                <span class="card-link">Explore Tool →</span>
             </div>
 
-            <div class="field-card">
-                <div class="field-icon">🌐</div>
+            <div class="connection-feature-card" onclick="showDetail('network')">
+                <div class="icon">🌐</div>
                 <h3>Science Network</h3>
-                <p>Navigate a network of scientific topics and see the bigger interconnected picture.</p>
+                <p>
+                    Explore the scientific universe as a network
+                    of interconnected fields, theories and applications.
+                </p>
+                <span class="card-link">Explore Tool →</span>
             </div>
 
-            <div class="field-card">
-                <div class="field-icon">🔍</div>
+            <div class="connection-feature-card" onclick="showDetail('discoveries')">
+                <div class="icon">🔍</div>
                 <h3>Related Discoveries</h3>
-                <p>Start from one idea and explore related discoveries across multiple fields of science.</p>
+                <p>
+                    Connect one discovery to other scientific
+                    breakthroughs, technologies and ideas.
+                </p>
+                <span class="card-link">Explore Tool →</span>
             </div>
 
-            <div class="field-card">
-                <div class="field-icon">🧠</div>
+            <div class="connection-feature-card" onclick="showDetail('thinking')">
+                <div class="icon">🧠</div>
                 <h3>Interdisciplinary Thinking</h3>
-                <p>Train your mind to think across subjects and find creative connections between ideas.</p>
+                <p>
+                    Develop creative thinking by combining knowledge
+                    from multiple scientific disciplines.
+                </p>
+                <span class="card-link">Explore Tool →</span>
             </div>
-        </div>
-    </section>
 
-    <!-- AI Mode -->
-    <section class="ai-section">
-        <div class="section-label">AI MODE</div>
-        <h2>Explore Connections</h2>
-        <p>
-            ASU.AI will help you uncover hidden relationships between scientific concepts, 
-            build knowledge maps, and understand how different fields of science are connected.
-        </p>
-        
-        <div class="ai-modes">
-            <div class="ai-mode">Knowledge Graph</div>
-            <div class="ai-mode">Concept Mapping</div>
-            <div class="ai-mode">Cross-Subject Links</div>
-            <div class="ai-mode">Science Network</div>
         </div>
 
-        <p class="coming-soon">COMING SOON IN PHASE 1</p>
+        <!-- INTERACTIVE DETAIL -->
+        <div class="connection-detail-panel" id="detail-panel">
+            <h3 id="detail-title"></h3>
+            <p id="detail-description"></p>
+            <button onclick="closeDetail()">Close</button>
+        </div>
+
     </section>
 
-    <!-- Footer -->
-    <footer>
+    <!-- SCIENCE EXPLORER -->
+    <section class="connection-section" id="science-explorer">
+
+        <div class="connection-section-heading">
+            <div class="mini-label">INTERDISCIPLINARY EXPLORER</div>
+            <h2>Explore Scientific Connections</h2>
+            <p>
+                Search for a scientific subject or explore some
+                fascinating connections between different disciplines.
+            </p>
+        </div>
+
+        <div class="connection-explorer">
+
+            <div class="connection-search-box">
+                <input
+                    type="search"
+                    id="connection-search"
+                    placeholder="Search topics: Gravity, DNA, AI, Energy..."
+                    aria-label="Search science connections"
+                >
+            </div>
+
+            <div class="connection-topic-grid" id="topic-grid">
+
+                <div class="connection-topic" data-keywords="physics mathematics gravity spacetime relativity universe">
+                    <h3>🌌 Gravity & Mathematics</h3>
+                    <p>
+                        Mathematics describes gravitational motion,
+                        orbital dynamics and the geometry of spacetime.
+                    </p>
+                    <div class="connection-tags">
+                        <span class="connection-tag">Physics</span>
+                        <span class="connection-tag">Mathematics</span>
+                        <span class="connection-tag">Astronomy</span>
+                    </div>
+                </div>
+
+                <div class="connection-topic" data-keywords="biology chemistry dna molecular genetics proteins">
+                    <h3>🧬 DNA & Chemistry</h3>
+                    <p>
+                        Molecular chemistry explains how DNA stores information,
+                        how molecular bonds form and how biological systems function.
+                    </p>
+                    <div class="connection-tags">
+                        <span class="connection-tag">Biology</span>
+                        <span class="connection-tag">Chemistry</span>
+                        <span class="connection-tag">Genetics</span>
+                    </div>
+                </div>
+
+                <div class="connection-topic" data-keywords="physics computer science technology quantum computing">
+                    <h3>⚛️ Quantum Physics & Computing</h3>
+                    <p>
+                        Quantum mechanics provides the physical principles
+                        behind emerging quantum computing technologies.
+                    </p>
+                    <div class="connection-tags">
+                        <span class="connection-tag">Physics</span>
+                        <span class="connection-tag">Computing</span>
+                        <span class="connection-tag">Technology</span>
+                    </div>
+                </div>
+
+                <div class="connection-topic" data-keywords="biology physics medicine technology neuroscience">
+                    <h3>🧠 Brain & Technology</h3>
+                    <p>
+                        Neuroscience, electrical engineering and computer science
+                        combine to inspire brain-computer interface technologies.
+                    </p>
+                    <div class="connection-tags">
+                        <span class="connection-tag">Neuroscience</span>
+                        <span class="connection-tag">Physics</span>
+                        <span class="connection-tag">Engineering</span>
+                    </div>
+                </div>
+
+                <div class="connection-topic" data-keywords="energy chemistry physics environment climate solar">
+                    <h3>☀️ Energy & Environment</h3>
+                    <p>
+                        Physics and chemistry help explain solar energy,
+                        energy transformations and environmental systems.
+                    </p>
+                    <div class="connection-tags">
+                        <span class="connection-tag">Physics</span>
+                        <span class="connection-tag">Chemistry</span>
+                        <span class="connection-tag">Environment</span>
+                    </div>
+                </div>
+
+                <div class="connection-topic" data-keywords="mathematics computer science artificial intelligence algorithms">
+                    <h3>🤖 Mathematics & AI</h3>
+                    <p>
+                        Linear algebra, probability and optimization
+                        form important foundations of modern artificial intelligence.
+                    </p>
+                    <div class="connection-tags">
+                        <span class="connection-tag">Mathematics</span>
+                        <span class="connection-tag">AI</span>
+                        <span class="connection-tag">Computer Science</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <p id="search-message" style="display:none; color:#a9bdd5; margin-top:20px;">
+                No matching topics found.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- AI SECTION -->
+    <section class="connection-section">
+
+        <div class="connection-ai">
+
+            <div class="connection-label">ASU.AI INTELLIGENCE</div>
+
+            <h2>Think Beyond Boundaries</h2>
+
+            <p>
+                Imagine an AI that helps you connect scientific ideas,
+                explore interdisciplinary concepts, build knowledge maps
+                and discover relationships you might never have noticed.
+                This is the vision of ASU.AI Connections.
+            </p>
+
+            <p class="coming-soon">AI CONNECTION ENGINE — FUTURE DEVELOPMENT</p>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="connection-footer">
+
         <div class="footer-logo">ASU<span>.AI</span></div>
+
         <p>AI-powered science exploration, research and innovation.</p>
         <p>A ProtiQ Labs initiative</p>
-        <p class="copyright">© 2026 ASU.AI — Explore. Experiment. Discover.</p>
+
+        <p class="copyright">
+            © 2026 ASU.AI — Explore. Experiment. Discover.
+        </p>
+
     </footer>
+
+</div>
+
+<script>
+    // FEATURE DETAILS
+
+    const featureDetails = {
+        graph: {
+            title: "Knowledge Graph",
+            description: "A knowledge graph represents scientific concepts as nodes and relationships as links. In a future version, you will be able to explore connections between topics such as gravity, spacetime, energy, atoms and technology visually."
+        },
+
+        maps: {
+            title: "Concept Maps",
+            description: "Concept maps organize ideas into structured visual relationships. They can help learners understand how theories, principles and discoveries fit together."
+        },
+
+        subjects: {
+            title: "Cross-Subject Links",
+            description: "Explore how one subject supports another. For example, mathematics supports physics, chemistry connects with biology, and physics underlies many engineering technologies."
+        },
+
+        network: {
+            title: "Science Network",
+            description: "A science network connects disciplines, discoveries, scientists, theories and technologies. The goal is to explore science as one interconnected system."
+        },
+
+        discoveries: {
+            title: "Related Discoveries",
+            description: "Begin with one discovery and investigate other developments that share scientific principles, methods or applications."
+        },
+
+        thinking: {
+            title: "Interdisciplinary Thinking",
+            description: "Interdisciplinary thinking means combining approaches and knowledge from different subjects to solve problems, create ideas and understand complex systems."
+        }
+    };
+
+    function showDetail(key) {
+        const panel = document.getElementById("detail-panel");
+        const title = document.getElementById("detail-title");
+        const description = document.getElementById("detail-description");
+
+        title.textContent = featureDetails[key].title;
+        description.textContent = featureDetails[key].description;
+
+        panel.classList.add("active");
+
+        panel.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }
+
+    function closeDetail() {
+        document.getElementById("detail-panel").classList.remove("active");
+    }
+
+    // TOPIC SEARCH
+
+    const searchInput = document.getElementById("connection-search");
+    const topicCards = document.querySelectorAll(".connection-topic");
+    const searchMessage = document.getElementById("search-message");
+
+    searchInput.addEventListener("input", function() {
+        const searchTerm = this.value.trim().toLowerCase();
+        let visibleCount = 0;
+
+        topicCards.forEach(function(card) {
+            const keywords = card.dataset.keywords.toLowerCase();
+            const content = card.textContent.toLowerCase();
+
+            const matches = keywords.includes(searchTerm) ||
+                            content.includes(searchTerm);
+
+            card.style.display = matches ? "" : "none";
+
+            if(matches) {
+                visibleCount++;
+            }
+        });
+
+        searchMessage.style.display = visibleCount === 0 ? "block" : "none";
+    });
+</script>
 
 </body>
 </html>
