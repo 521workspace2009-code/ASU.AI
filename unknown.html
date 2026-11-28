@@ -5,122 +5,400 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore the Unknown | ASU.AI</title>
-    <link rel="stylesheet" href="style.css">
 
     <style>
-        .cosmos-hero {
-            text-align: center;
-            padding: 85px 20px 55px;
+        /* =========================================
+           ASU.AI - EXPLORE THE UNKNOWN
+           Independent Cosmic Background
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .cosmos-hero h1 {
-            font-size: clamp(36px, 6vw, 65px);
-            line-height: 1.2;
-            margin: 20px 0;
+        html {
+            scroll-behavior: smooth;
         }
 
-        .cosmos-hero p {
-            color: #9aabc0;
-            max-width: 650px;
-            margin: 0 auto;
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #030610;
+            color: #ffffff;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        .cosmos-container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 20px 20px 100px;
+        /* COSMIC BACKGROUND */
+
+        #spaceCanvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
         }
 
-        .cosmos-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 22px;
+        .nebula {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.18;
+            z-index: 0;
+            pointer-events: none;
+            animation: nebulaFloat 18s ease-in-out infinite alternate;
         }
 
-        .cosmos-box {
-            padding: 30px;
-            background: rgba(10,19,33,0.83);
-            border: 1px solid rgba(0,217,255,0.17);
-            border-radius: 18px;
+        .nebula-one {
+            background: #4d1baf;
+            top: -200px;
+            left: -200px;
+        }
+
+        .nebula-two {
+            background: #075eab;
+            bottom: -200px;
+            right: -200px;
+            animation-delay: -8s;
+        }
+
+        .nebula-three {
+            background: #8b236b;
+            top: 40%;
+            left: 45%;
+            width: 400px;
+            height: 400px;
+            animation-delay: -4s;
+        }
+
+        @keyframes nebulaFloat {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            100% {
+                transform: translate(100px, -60px) scale(1.2);
+            }
+        }
+
+        /* CONTENT LAYER */
+
+        .content-layer {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* HEADER */
+
+        header {
+            width: 100%;
+            padding: 20px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: rgba(3,6,16,0.65);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: bold;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #8b5cf6;
+        }
+
+        nav {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-size: 14px;
             transition: 0.3s;
         }
 
-        .cosmos-box:hover {
-            transform: translateY(-4px);
-            border-color: rgba(0,217,255,0.45);
-            box-shadow: 0 10px 35px rgba(0,217,255,0.06);
+        nav a:hover {
+            color: #a78bfa;
         }
 
-        .cosmos-box .icon {
-            font-size: 35px;
+        /* HERO */
+
+        .hero {
+            min-height: 78vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 80px;
+        }
+
+        .hero-tag {
+            border: 1px solid rgba(167,139,250,0.4);
+            background: rgba(139,92,246,0.12);
+            color: #c4b5fd;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 13px;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 90px);
+            font-weight: 800;
+            line-height: 1.1;
+            max-width: 1000px;
+            background: linear-gradient(
+                90deg,
+                #ffffff,
+                #a78bfa,
+                #60a5fa,
+                #ffffff
+            );
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: titleGlow 6s linear infinite;
+        }
+
+        @keyframes titleGlow {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .hero p {
+            max-width: 750px;
+            margin-top: 28px;
+            color: #cbd5e1;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .hero-button {
+            margin-top: 40px;
+            padding: 15px 32px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #7c3aed, #2563eb);
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 0 30px rgba(124,58,237,0.25);
+        }
+
+        .hero-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 40px rgba(124,58,237,0.5);
+        }
+
+        /* SECTION */
+
+        .section {
+            padding: 60px 7% 100px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-heading h2 {
+            font-size: 38px;
             margin-bottom: 15px;
         }
 
-        .cosmos-box h2 {
-            font-size: 22px;
-            margin-bottom: 12px;
-            color: #f1f5f9;
+        .section-heading p {
+            color: #94a3b8;
+            font-size: 16px;
+            line-height: 1.7;
         }
 
-        .cosmos-box p {
-            color: #9aabc0;
-            font-size: 14px;
+        /* DISCOVERY CARDS */
+
+        .discovery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .discovery-card {
+            position: relative;
+            overflow: hidden;
+            padding: 35px 28px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(10,16,32,0.72);
+            backdrop-filter: blur(10px);
+            transition: 0.4s;
+        }
+
+        .discovery-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                #8b5cf6,
+                #60a5fa,
+                transparent
+            );
+            transition: 0.6s;
+        }
+
+        .discovery-card:hover::before {
+            left: 100%;
+        }
+
+        .discovery-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139,92,246,0.5);
+            box-shadow: 0 15px 40px rgba(76,29,149,0.18);
+        }
+
+        .card-icon {
+            font-size: 38px;
+            margin-bottom: 22px;
+        }
+
+        .discovery-card h3 {
+            font-size: 23px;
+            margin-bottom: 15px;
+            color: #e9d5ff;
+        }
+
+        .discovery-card p {
+            color: #aab6ca;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        /* QUESTION SECTION */
+
+        .question-section {
+            margin: 0 7% 100px;
+            padding: 65px 35px;
+            border: 1px solid rgba(139,92,246,0.25);
+            border-radius: 25px;
+            background: linear-gradient(
+                135deg,
+                rgba(76,29,149,0.15),
+                rgba(15,23,42,0.7),
+                rgba(30,64,175,0.12)
+            );
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .question-section h2 {
+            font-size: 34px;
             margin-bottom: 20px;
         }
 
-        .cosmos-box a {
-            color: #00d9ff;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 14px;
-        }
-
-        .cosmos-box a:hover {
-            text-shadow: 0 0 10px rgba(0,217,255,0.4);
-        }
-
-        .cosmos-wide {
-            grid-column: 1 / -1;
-        }
-
-        .cosmos-topics {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .cosmos-topics span {
-            border: 1px solid rgba(0,217,255,0.18);
-            background: rgba(0,217,255,0.05);
-            padding: 8px 13px;
-            border-radius: 30px;
+        .question-section p {
+            max-width: 750px;
+            margin: auto;
             color: #cbd5e1;
-            font-size: 13px;
+            line-height: 1.8;
+            font-size: 16px;
         }
 
-        .back-link {
-            display: inline-block;
-            margin-bottom: 20px;
-            color: #00d9ff;
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        footer a {
+            color: #a78bfa;
             text-decoration: none;
         }
 
-        @media(max-width: 700px) {
-            .cosmos-grid {
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+            .discovery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            nav {
+                gap: 14px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 18px 5%;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: 70vh;
+                padding: 80px 20px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .discovery-grid {
                 grid-template-columns: 1fr;
             }
 
-            .cosmos-wide {
-                grid-column: auto;
+            .section-heading h2 {
+                font-size: 30px;
             }
 
-            .cosmos-box {
-                padding: 24px;
+            .question-section {
+                margin: 0 5% 70px;
+                padding: 45px 22px;
             }
 
-            .cosmos-hero {
-                padding: 60px 20px 40px;
+            .question-section h2 {
+                font-size: 28px;
+            }
+
+            .nebula {
+                width: 300px;
+                height: 300px;
+                filter: blur(80px);
             }
         }
     </style>
@@ -128,259 +406,287 @@
 
 <body>
 
-    <!-- NAVIGATION -->
-    <header class="navbar">
+    <!-- SPACE ANIMATION -->
+    <canvas id="spaceCanvas"></canvas>
 
-        <a href="index.html" class="logo">
-            <span class="logo-symbol">✳</span>
-            <span>ASU<span class="blue">.AI</span></span>
-        </a>
+    <div class="nebula nebula-one"></div>
+    <div class="nebula nebula-two"></div>
+    <div class="nebula nebula-three"></div>
 
-        <button class="menu-toggle" id="menuToggle">
-            ☰
-        </button>
+    <div class="content-layer">
 
-        <nav id="mobileNav">
-            <a href="index.html">Home</a>
-            <a href="index.html#fields">Explore</a>
-            <a href="experiments.html">Experiments</a>
-            <a href="research.html">Research</a>
-            <a href="future.html">Future</a>
-        </nav>
+        <!-- HEADER -->
+        <header>
 
-        <a href="index.html#fields" class="nav-button">
-            All Fields
-        </a>
+            <a href="index.html" class="logo">
+                ASU<span>.AI</span>
+            </a>
 
-    </header>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="unknown.html">Unknown</a>
+                <a href="experiments.html">Experiments</a>
+                <a href="connections.html">Connections</a>
+                <a href="research.html">Research</a>
+                <a href="inventions.html">Invent</a>
+                <a href="future.html">Future</a>
+            </nav>
 
+        </header>
 
-    <!-- COSMOS INTRO -->
-    <section class="cosmos-hero">
+        <!-- HERO -->
+        <section class="hero">
 
-        <div class="hero-content">
-
-            <div class="eyebrow">
-                <span class="status-dot"></span>
-                FIELD 01 / COSMOS
+            <div class="hero-tag">
+                BEYOND WHAT WE KNOW
             </div>
 
-            <h1>
-                Explore the<br>
-                <span class="gradient-text">Unknown</span>
-            </h1>
+            <h1>Explore the Unknown</h1>
 
             <p>
-                Journey through space, time, matter and the mysteries
-                of the universe. Discover the forces that shape reality.
+                The universe is filled with mysteries waiting to be discovered.
+                Explore the hidden dimensions of reality, uncover cosmic secrets,
+                and journey beyond the boundaries of human knowledge.
             </p>
 
-        </div>
+            <a href="#discoveries" class="hero-button">
+                Begin Your Exploration
+            </a>
 
-    </section>
+        </section>
 
+        <!-- DISCOVERY SECTION -->
+        <section class="section" id="discoveries">
 
-    <!-- COSMOS DASHBOARD -->
-    <main class="cosmos-container">
+            <div class="section-heading">
 
-        <a href="index.html" class="back-link">
-            ← Back to ASU.AI Universe
-        </a>
-
-        <div class="cosmos-grid">
-
-
-            <!-- SPACE -->
-            <article class="cosmos-box">
-
-                <div class="icon">🌌</div>
-
-                <h2>Space & Universe</h2>
+                <h2>Discover the Mysteries</h2>
 
                 <p>
-                    Explore the cosmic landscape, galaxies,
-                    nebulae, stars and the vast universe.
+                    Explore the questions that challenge our understanding
+                    of the universe.
                 </p>
 
-                <a href="#topics">
-                    Discover the cosmos →
-                </a>
+            </div>
 
-            </article>
+            <div class="discovery-grid">
 
+                <div class="discovery-card">
 
-            <!-- BLACK HOLES -->
-            <article class="cosmos-box">
+                    <div class="card-icon">🌌</div>
 
-                <div class="icon">🕳️</div>
+                    <h3>Dark Matter</h3>
 
-                <h2>Black Holes</h2>
-
-                <p>
-                    Discover gravity, event horizons, spacetime
-                    and the mysterious objects of the cosmos.
-                </p>
-
-                <a href="#topics">
-                    Explore black holes →
-                </a>
-
-            </article>
-
-
-            <!-- PHYSICS -->
-            <article class="cosmos-box">
-
-                <div class="icon">⚛️</div>
-
-                <h2>Fundamental Physics</h2>
-
-                <p>
-                    Explore the laws of motion, energy, matter,
-                    relativity and the foundations of reality.
-                </p>
-
-                <a href="#topics">
-                    Discover physics →
-                </a>
-
-            </article>
-
-
-            <!-- ASTRONOMY -->
-            <article class="cosmos-box">
-
-                <div class="icon">🔭</div>
-
-                <h2>Astronomy</h2>
-
-                <p>
-                    Explore planets, moons, solar systems,
-                    astronomical observations and celestial objects.
-                </p>
-
-                <a href="#topics">
-                    Explore astronomy →
-                </a>
-
-            </article>
-
-
-            <!-- QUANTUM -->
-            <article class="cosmos-box">
-
-                <div class="icon">🌀</div>
-
-                <h2>Quantum Universe</h2>
-
-                <p>
-                    Discover quantum mechanics, particles,
-                    uncertainty and the microscopic universe.
-                </p>
-
-                <a href="#topics">
-                    Enter quantum science →
-                </a>
-
-            </article>
-
-
-            <!-- COSMIC MYSTERIES -->
-            <article class="cosmos-box">
-
-                <div class="icon">✨</div>
-
-                <h2>Cosmic Mysteries</h2>
-
-                <p>
-                    Explore dark matter, dark energy, cosmic origins
-                    and unanswered questions about the universe.
-                </p>
-
-                <a href="#topics">
-                    Explore the mysteries →
-                </a>
-
-            </article>
-
-
-            <!-- TOPICS -->
-            <article class="cosmos-box cosmos-wide" id="topics">
-
-                <div class="icon">🧠</div>
-
-                <h2>Explore the Universe of Ideas</h2>
-
-                <p>
-                    The Cosmos field brings together different areas
-                    of physics and astronomy. These are the topics
-                    we will develop into interactive learning modules.
-                </p>
-
-                <div class="cosmos-topics">
-
-                    <span>Relativity</span>
-                    <span>Quantum Physics</span>
-                    <span>Astrophysics</span>
-                    <span>Cosmology</span>
-                    <span>Space Exploration</span>
-                    <span>Particle Physics</span>
-                    <span>Gravity</span>
-                    <span>Time</span>
-                    <span>Energy</span>
-                    <span>Stars</span>
-                    <span>Galaxies</span>
-                    <span>Planetary Science</span>
+                    <p>
+                        What invisible substance holds galaxies together?
+                        Explore the mysterious matter that may shape the
+                        structure and evolution of our universe.
+                    </p>
 
                 </div>
 
-            </article>
+                <div class="discovery-card">
 
-        </div>
+                    <div class="card-icon">🕳️</div>
 
-    </main>
+                    <h3>Black Holes</h3>
 
+                    <p>
+                        Discover the extreme regions of spacetime where
+                        gravity becomes so powerful that even light
+                        cannot escape beyond the event horizon.
+                    </p>
 
-    <!-- FOOTER -->
-    <footer class="footer">
+                </div>
 
-        <a href="index.html" class="logo footer-logo">
-            <span class="logo-symbol">✳</span>
-            <span>ASU<span class="blue">.AI</span></span>
-        </a>
+                <div class="discovery-card">
 
-        <p>AI Science Universe — Discover. Learn. Innovate.</p>
+                    <div class="card-icon">🪐</div>
 
-        <p class="copyright">
-            © 2026 ASU.AI. Exploring the universe of knowledge.
-        </p>
+                    <h3>Exoplanets</h3>
 
-    </footer>
+                    <p>
+                        Search for worlds beyond our solar system.
+                        Could some distant planets contain conditions
+                        suitable for life?
+                    </p>
 
+                </div>
 
-    <!-- MOBILE MENU -->
+                <div class="discovery-card">
+
+                    <div class="card-icon">⚛️</div>
+
+                    <h3>Quantum Mystery</h3>
+
+                    <p>
+                        Explore the strange behavior of particles,
+                        quantum superposition, entanglement and the
+                        fundamental nature of reality.
+                    </p>
+
+                </div>
+
+                <div class="discovery-card">
+
+                    <div class="card-icon">🌠</div>
+
+                    <h3>Origin of the Universe</h3>
+
+                    <p>
+                        Investigate the Big Bang, cosmic expansion,
+                        the earliest moments of the universe and
+                        how everything began.
+                    </p>
+
+                </div>
+
+                <div class="discovery-card">
+
+                    <div class="card-icon">🌀</div>
+
+                    <h3>Space & Time</h3>
+
+                    <p>
+                        Explore spacetime, relativity, gravitational
+                        waves and the possibility of dimensions
+                        beyond our everyday experience.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- QUESTION SECTION -->
+        <section class="question-section">
+
+            <h2>The Universe Has More to Reveal</h2>
+
+            <p>
+                Every unanswered question is an opportunity for discovery.
+                The unknown is not the end of knowledge — it is where
+                the next scientific journey begins.
+            </p>
+
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+
+            <p>
+                © 2026 ASU.AI — AI Science Universe
+            </p>
+
+            <p style="margin-top:10px;">
+                <a href="index.html">Return to Home</a>
+            </p>
+
+        </footer>
+
+    </div>
+
+    <!-- ANIMATION SCRIPT -->
     <script>
 
-        const menuToggle = document.getElementById("menuToggle");
-        const mobileNav = document.getElementById("mobileNav");
+        const canvas = document.getElementById("spaceCanvas");
+        const ctx = canvas.getContext("2d");
 
-        menuToggle.addEventListener("click", function () {
-            mobileNav.classList.toggle("active");
+        let stars = [];
+        let width;
+        let height;
+        let animationFrame;
 
-            menuToggle.textContent =
-                mobileNav.classList.contains("active") ? "✕" : "☰";
-        });
+        function resizeCanvas() {
 
-        mobileNav.querySelectorAll("a").forEach(function (link) {
+            width = window.innerWidth;
+            height = window.innerHeight;
 
-            link.addEventListener("click", function () {
+            canvas.width = width;
+            canvas.height = height;
 
-                mobileNav.classList.remove("active");
-                menuToggle.textContent = "☰";
+            createStars();
+        }
 
-            });
+        function createStars() {
 
-        });
+            stars = [];
+
+            const totalStars = Math.min(
+                350,
+                Math.floor((width * height) / 3500)
+            );
+
+            for (let i = 0; i < totalStars; i++) {
+
+                stars.push({
+
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+
+                    radius: Math.random() * 1.5 + 0.3,
+
+                    speed: Math.random() * 0.35 + 0.08,
+
+                    opacity: Math.random() * 0.7 + 0.2,
+
+                    twinkleSpeed: Math.random() * 0.02 + 0.005,
+
+                    phase: Math.random() * Math.PI * 2
+
+                });
+
+            }
+
+        }
+
+        function animateSpace() {
+
+            ctx.clearRect(0, 0, width, height);
+
+            for (let star of stars) {
+
+                star.phase += star.twinkleSpeed;
+
+                let twinkle =
+                    star.opacity *
+                    (0.65 + Math.sin(star.phase) * 0.35);
+
+                ctx.beginPath();
+
+                ctx.arc(
+                    star.x,
+                    star.y,
+                    star.radius,
+                    0,
+                    Math.PI * 2
+                );
+
+                ctx.fillStyle =
+                    `rgba(255,255,255,${twinkle})`;
+
+                ctx.fill();
+
+                star.y += star.speed;
+
+                if (star.y > height) {
+
+                    star.y = 0;
+                    star.x = Math.random() * width;
+
+                }
+
+            }
+
+            animationFrame = requestAnimationFrame(animateSpace);
+
+        }
+
+        window.addEventListener("resize", resizeCanvas);
+
+        resizeCanvas();
+        animateSpace();
 
     </script>
 
