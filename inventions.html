@@ -1,129 +1,1094 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invent Something New | ASU.AI</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Invent | ASU.AI</title>
+
+<style>
+
+/* =========================================
+   ASU.AI — INVENT
+   FUTURISTIC CIRCUIT BACKGROUND
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #02080c;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   FIXED BACKGROUND
+========================================= */
+
+#circuitCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.background-glow {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: .16;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.glow-one {
+    width: 500px;
+    height: 500px;
+    background: #0891b2;
+    top: -200px;
+    left: -150px;
+}
+
+.glow-two {
+    width: 450px;
+    height: 450px;
+    background: #2563eb;
+    bottom: -200px;
+    right: -150px;
+}
+
+.glow-three {
+    width: 350px;
+    height: 350px;
+    background: #06b6d4;
+    top: 40%;
+    left: 35%;
+}
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.page-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 7%;
+    background: rgba(2,8,12,.82);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.logo {
+    color: white;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+.logo span {
+    color: #67e8f9;
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+nav a {
+    color: #cbd5e1;
+    font-size: 13px;
+    text-decoration: none;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: #67e8f9;
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero {
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 90px 20px;
+}
+
+.hero-tag {
+    padding: 10px 22px;
+    border: 1px solid rgba(34,211,238,.35);
+    background: rgba(8,145,178,.1);
+    border-radius: 30px;
+    color: #67e8f9;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(40px,7vw,85px);
+    line-height: 1.15;
+    max-width: 1100px;
+    width: 100%;
+    padding: 0 10px;
+    text-align: center;
+    overflow-wrap: break-word;
+    font-weight: 900;
+
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #67e8f9,
+        #60a5fa,
+        #ffffff
+    );
+
+    background-size: 200%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    animation: titleFlow 7s linear infinite;
+}
+
+@keyframes titleFlow {
+    to {
+        background-position: 200%;
+    }
+}
+
+.hero p {
+    max-width: 780px;
+    margin-top: 25px;
+    color: #aab8cc;
+    font-size: 17px;
+    line-height: 1.9;
+}
+
+.buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 35px;
+}
+
+.btn {
+    padding: 14px 28px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .3s;
+}
+
+.btn-primary {
+    color: white;
+    background: linear-gradient(135deg,#0891b2,#2563eb);
+    box-shadow: 0 0 25px rgba(8,145,178,.25);
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 35px rgba(8,145,178,.45);
+}
+
+.btn-secondary {
+    color: white;
+    border: 1px solid rgba(255,255,255,.2);
+    background: rgba(255,255,255,.04);
+}
+
+.btn-secondary:hover {
+    background: rgba(255,255,255,.12);
+}
+
+/* =========================================
+   INVENTION CORE
+========================================= */
+
+.invention-visual {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin: 60px auto 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.invention-core {
+    width: 90px;
+    height: 90px;
+    border-radius: 20px;
+    transform: rotate(45deg);
+
+    background: linear-gradient(
+        135deg,
+        #ffffff,
+        #67e8f9,
+        #0891b2,
+        #164e63
+    );
+
+    box-shadow:
+        0 0 30px #22d3ee,
+        0 0 80px rgba(8,145,178,.5),
+        0 0 140px rgba(37,99,235,.25);
+
+    animation: corePulse 3s ease-in-out infinite;
+}
+
+.visual-ring {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border: 1px solid rgba(34,211,238,.5);
+    border-radius: 50%;
+    animation: ringRotate 12s linear infinite;
+}
+
+.visual-ring-two {
+    width: 240px;
+    height: 240px;
+    border-color: rgba(96,165,250,.3);
+    animation-duration: 20s;
+    animation-direction: reverse;
+}
+
+.visual-ring-three {
+    width: 150px;
+    height: 150px;
+    border-color: rgba(103,232,249,.4);
+    animation-duration: 8s;
+}
+
+.visual-ring::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #67e8f9;
+    box-shadow: 0 0 20px #22d3ee;
+}
+
+.visual-ring-two::before {
+    background: #60a5fa;
+    box-shadow: 0 0 20px #60a5fa;
+}
+
+.visual-ring-three::before {
+    background: #ffffff;
+    box-shadow: 0 0 20px #ffffff;
+}
+
+@keyframes ringRotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes corePulse {
+    0%,100% {
+        transform: rotate(45deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(45deg) scale(1.15);
+    }
+}
+
+/* =========================================
+   SYSTEM PANEL
+========================================= */
+
+.system-panel {
+    position: absolute;
+    right: 7%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 230px;
+    padding: 22px;
+    border-radius: 15px;
+    background: rgba(2,8,12,.85);
+    border: 1px solid rgba(34,211,238,.25);
+    backdrop-filter: blur(12px);
+    text-align: left;
+    font-family: monospace;
+}
+
+.panel-title {
+    color: #67e8f9;
+    font-size: 12px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.panel-line {
+    color: #94a3b8;
+    font-size: 12px;
+    margin: 12px 0;
+}
+
+.panel-line span {
+    color: #67e8f9;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22d3ee;
+    box-shadow: 0 0 12px #22d3ee;
+    margin-right: 8px;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+    50% {
+        opacity: .2;
+    }
+}
+
+/* =========================================
+   SECTIONS
+========================================= */
+
+.section {
+    padding: 80px 7% 100px;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-heading h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+.section-heading p {
+    color: #94a3b8;
+    line-height: 1.8;
+}
+
+/* =========================================
+   INVENTION CARDS
+========================================= */
+
+.invention-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.invention-card {
+    position: relative;
+    padding: 35px 28px;
+    border-radius: 20px;
+    background: rgba(3,12,20,.86);
+    border: 1px solid rgba(255,255,255,.09);
+    backdrop-filter: blur(12px);
+    overflow: hidden;
+    transition: .35s;
+}
+
+.invention-card::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: rgba(8,145,178,.1);
+    filter: blur(50px);
+    transition: .4s;
+}
+
+.invention-card:hover {
+    transform: translateY(-10px);
+    border-color: rgba(34,211,238,.45);
+    box-shadow: 0 15px 40px rgba(8,145,178,.15);
+}
+
+.invention-card:hover::before {
+    background: rgba(37,99,235,.15);
+}
+
+.card-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.invention-card h3 {
+    font-size: 22px;
+    color: #a5f3fc;
+    margin-bottom: 15px;
+}
+
+.invention-card p {
+    color: #aab6ca;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.card-button {
+    display: inline-block;
+    margin-top: 22px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    color: #67e8f9;
+    border: 1px solid rgba(34,211,238,.3);
+    background: rgba(8,145,178,.08);
+    text-decoration: none;
+    font-size: 13px;
+    transition: .3s;
+}
+
+.card-button:hover {
+    background: rgba(8,145,178,.2);
+    border-color: #67e8f9;
+}
+
+/* =========================================
+   BANNER
+========================================= */
+
+.banner {
+    margin: 0 7% 100px;
+    padding: 65px 30px;
+    border-radius: 25px;
+
+    border: 1px solid rgba(34,211,238,.2);
+
+    background: linear-gradient(
+        135deg,
+        rgba(8,145,178,.12),
+        rgba(2,8,12,.85),
+        rgba(37,99,235,.12)
+    );
+
+    text-align: center;
+    backdrop-filter: blur(12px);
+}
+
+.banner h2 {
+    font-size: 34px;
+    margin-bottom: 20px;
+}
+
+.banner p {
+    max-width: 750px;
+    margin: auto;
+    color: #cbd5e1;
+    line-height: 1.9;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+    padding: 30px 20px;
+    text-align: center;
+    color: #64748b;
+    border-top: 1px solid rgba(255,255,255,.08);
+    font-size: 14px;
+}
+
+footer a {
+    color: #67e8f9;
+    text-decoration: none;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:1050px) {
+
+    .system-panel {
+        display: none;
+    }
+
+    .invention-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:650px) {
+
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 18px 5%;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 11px;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 80px 15px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .invention-visual {
+        transform: scale(.85);
+        margin: 30px auto;
+    }
+
+    .invention-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-heading h2 {
+        font-size: 30px;
+    }
+
+    .banner {
+        margin: 0 5% 70px;
+        padding: 45px 20px;
+    }
+
+    .banner h2 {
+        font-size: 27px;
+    }
+
+}
+
+</style>
 </head>
+
 <body>
 
-    <!-- Header -->
-    <header>
-        <a href="index.html" class="logo">ASU<span>.AI</span></a>
+<!-- FIXED CIRCUIT BACKGROUND -->
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="unknown.html">Explore</a>
-            <a href="experiments.html">Experiments</a>
-            <a href="connections.html">Connections</a>
-            <a href="research.html">Research</a>
-            <a href="inventions.html" class="active">Invent</a>
-            <a href="future.html">Future</a>
-            <a href="my-universe.html">My Universe</a>
-            <a href="#" class="nav-button">Start Exploring</a>
-        </nav>
-    </header>
+<canvas id="circuitCanvas"></canvas>
 
-    <!-- Hero Section -->
-    <section class="hero" style="min-height: 420px; padding: 90px 8%;">
-        <div class="hero-content">
-            <div class="hero-label">CORE FIELD 5 / 6</div>
-            <h1>Invent Something <span>New</span></h1>
-            <p class="hero-description">
-                Turn your ideas into reality. Generate concepts, design solutions, 
-                build prototypes, and develop innovative projects with AI guidance.
+<div class="background-glow glow-one"></div>
+<div class="background-glow glow-two"></div>
+<div class="background-glow glow-three"></div>
+
+<!-- FOREGROUND -->
+
+<div class="page-content">
+
+<!-- HEADER -->
+
+<header>
+
+    <a href="index.html" class="logo">
+        ASU<span>.AI</span>
+    </a>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="unknown.html">Unknown</a>
+        <a href="experiments.html">Experiments</a>
+        <a href="connections.html">Connections</a>
+        <a href="research.html">Research</a>
+        <a href="inventions.html">Invent</a>
+        <a href="future.html">Future</a>
+    </nav>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-tag">
+        IMAGINATION BECOMES ENGINEERING
+    </div>
+
+    <h1>Invent the Impossible</h1>
+
+    <p>
+        Transform scientific ideas into possibilities.
+        Explore invention, engineering, technology,
+        creative problem-solving and the systems
+        that could shape tomorrow.
+    </p>
+
+    <div class="buttons">
+
+        <a href="#inventions" class="btn btn-primary">
+            Explore Inventions
+        </a>
+
+        <a href="#engineering" class="btn btn-secondary">
+            Enter Invent Space
+        </a>
+
+    </div>
+
+    <!-- INVENTION CORE -->
+
+    <div class="invention-visual">
+
+        <div class="visual-ring-two"></div>
+        <div class="visual-ring"></div>
+        <div class="visual-ring-three"></div>
+        <div class="invention-core"></div>
+
+    </div>
+
+    <!-- SYSTEM PANEL -->
+
+    <div class="system-panel">
+
+        <div class="panel-title">
+            ENGINEERING SYSTEM
+        </div>
+
+        <div class="panel-line">
+            <span class="status-dot"></span>
+            SYSTEM ACTIVE
+        </div>
+
+        <div class="panel-line">
+            MODE: <span>INNOVATION</span>
+        </div>
+
+        <div class="panel-line">
+            PROCESS: <span>DESIGN</span>
+        </div>
+
+        <div class="panel-line">
+            STATUS: <span>ONLINE</span>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- INVENTION TOPICS -->
+
+<section class="section" id="engineering">
+
+    <div class="section-heading">
+
+        <h2>Explore the World of Invention</h2>
+
+        <p>
+            Explore how ideas, scientific knowledge
+            and engineering can create new possibilities.
+        </p>
+
+    </div>
+
+    <div class="invention-grid" id="inventions">
+
+        <div class="invention-card">
+
+            <div class="card-icon">🤖</div>
+
+            <h3>Robotics</h3>
+
+            <p>
+                Explore robotic systems, intelligent machines,
+                automation, motion, sensing and
+                the engineering of artificial systems.
             </p>
-            <div class="hero-buttons">
-                <a href="#" class="primary-button">Start Inventing</a>
-                <a href="#" class="secondary-button">View Challenges</a>
-            </div>
-        </div>
-    </section>
 
-    <!-- Field Description -->
-    <section class="introduction">
-        <div class="section-label">FIELD CONCEPT</div>
-        <h2>Innovation & Engineering Workspace</h2>
-        <p>
-            This field is your creative laboratory for invention. 
-            From problem definition and brainstorming to concept design, 
-            prototype planning and project documentation — everything happens in one place.
-        </p>
-    </section>
+            <a href="https://en.wikipedia.org/wiki/Robotics"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="card-button">
+                Explore Topic
+            </a>
 
-    <!-- What You Can Do -->
-    <section class="fields">
-        <div class="section-heading">
-            <div class="section-label">WHAT YOU CAN DO HERE</div>
-            <h2>Key Features</h2>
         </div>
 
-        <div class="field-container">
-            <div class="field-card">
-                <div class="field-icon">💡</div>
-                <h3>Idea Generation</h3>
-                <p>Brainstorm new ideas, explore innovation challenges, and get AI-powered suggestions to expand your thinking.</p>
-            </div>
+        <div class="invention-card">
 
-            <div class="field-card">
-                <div class="field-icon">🛠️</div>
-                <h3>Engineering Design</h3>
-                <p>Follow a structured design workflow: define the problem, create concepts, evaluate solutions and refine designs.</p>
-            </div>
+            <div class="card-icon">⚡</div>
 
-            <div class="field-card">
-                <div class="field-icon">📐</div>
-                <h3>Prototype Concepts</h3>
-                <p>Develop prototype ideas, sketch solutions, plan materials and document the steps needed to build your invention.</p>
-            </div>
+            <h3>Energy Innovation</h3>
 
-            <div class="field-card">
-                <div class="field-icon">🧠</div>
-                <h3>Mind Maps & Planning</h3>
-                <p>Organize complex ideas visually, create project roadmaps, and break big inventions into manageable steps.</p>
-            </div>
+            <p>
+                Discover new energy systems,
+                energy storage, efficiency,
+                electrical technology and engineering.
+            </p>
 
-            <div class="field-card">
-                <div class="field-icon">📁</div>
-                <h3>Project Workspace</h3>
-                <p>Save all your invention projects in one place. Track iterations, notes, sketches and design decisions.</p>
-            </div>
+            <a href="https://en.wikipedia.org/wiki/Energy_technology"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="card-button">
+                Explore Topic
+            </a>
 
-            <div class="field-card">
-                <div class="field-icon">🚀</div>
-                <h3>Innovation Hub</h3>
-                <p>Join challenges, explore real-world problems, and turn creative ideas into practical engineering solutions.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Mode -->
-    <section class="ai-section">
-        <div class="section-label">AI MODE</div>
-        <h2>Create Mode</h2>
-        <p>
-            ASU.AI will help you invent — from generating ideas and refining concepts 
-            to planning prototypes and organizing your entire design process.
-        </p>
-        
-        <div class="ai-modes">
-            <div class="ai-mode">Idea Generation</div>
-            <div class="ai-mode">Design Workflow</div>
-            <div class="ai-mode">Prototype Planning</div>
-            <div class="ai-mode">Project Notes</div>
         </div>
 
-        <p class="coming-soon">COMING SOON IN PHASE 1</p>
-    </section>
+        <div class="invention-card">
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-logo">ASU<span>.AI</span></div>
-        <p>AI-powered science exploration, research and innovation.</p>
-        <p>A ProtiQ Labs initiative</p>
-        <p class="copyright">© 2026 ASU.AI — Explore. Experiment. Discover.</p>
-    </footer>
+            <div class="card-icon">🧠</div>
+
+            <h3>Artificial Intelligence</h3>
+
+            <p>
+                Explore intelligent technologies,
+                AI systems, machine learning,
+                automation and creative applications.
+            </p>
+
+            <a href="https://en.wikipedia.org/wiki/Artificial_intelligence"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="card-button">
+                Explore Topic
+            </a>
+
+        </div>
+
+        <div class="invention-card">
+
+            <div class="card-icon">🛰️</div>
+
+            <h3>Space Technology</h3>
+
+            <p>
+                Explore spacecraft, satellite systems,
+                propulsion concepts, space engineering
+                and technologies for exploration.
+            </p>
+
+            <a href="https://en.wikipedia.org/wiki/Space_technology"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="card-button">
+                Explore Topic
+            </a>
+
+        </div>
+
+        <div class="invention-card">
+
+            <div class="card-icon">🔬</div>
+
+            <h3>Nanotechnology</h3>
+
+            <p>
+                Investigate nanoscale materials,
+                microscopic structures, molecular systems
+                and advanced technological applications.
+            </p>
+
+            <a href="https://en.wikipedia.org/wiki/Nanotechnology"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="card-button">
+                Explore Topic
+            </a>
+
+        </div>
+
+        <div class="invention-card">
+
+            <div class="card-icon">🏗️</div>
+
+            <h3>Engineering Design</h3>
+
+            <p>
+                Explore design principles,
+                prototyping, structural systems,
+                mechanical solutions and creative engineering.
+            </p>
+
+            <a href="https://en.wikipedia.org/wiki/Engineering_design"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="card-button">
+                Explore Topic
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- BANNER -->
+
+<section class="banner">
+
+    <h2>Every Invention Begins with an Idea</h2>
+
+    <p>
+        Innovation happens when imagination meets scientific
+        understanding. Explore, design, test, improve
+        and turn new ideas into meaningful possibilities.
+    </p>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>© 2026 ASU.AI — AI Science Universe</p>
+
+    <p style="margin-top:10px;">
+        <a href="index.html">Return to Home</a>
+    </p>
+
+</footer>
+
+</div>
+
+<!-- CIRCUIT ANIMATION -->
+
+<script>
+
+const canvas = document.getElementById("circuitCanvas");
+const ctx = canvas.getContext("2d");
+
+let width;
+let height;
+let circuits = [];
+let pulses = [];
+
+function resizeCanvas() {
+
+    width = window.innerWidth;
+    height = window.innerHeight;
+
+    canvas.width = width;
+    canvas.height = height;
+
+    createCircuits();
+
+}
+
+function createCircuits() {
+
+    circuits = [];
+    pulses = [];
+
+    const spacing = 80;
+
+    for(let x = 0; x < width; x += spacing) {
+
+        for(let y = 0; y < height; y += spacing) {
+
+            if(Math.random() > .55) {
+
+                const horizontal = Math.random() > .5;
+
+                circuits.push({
+
+                    x: x,
+                    y: y,
+
+                    length: Math.random() * 100 + 30,
+
+                    horizontal: horizontal,
+
+                    opacity: Math.random() * .18 + .05
+
+                });
+
+                if(Math.random() > .65) {
+
+                    pulses.push({
+
+                        x: x,
+                        y: y,
+
+                        length: Math.random() * 80 + 30,
+
+                        horizontal: horizontal,
+
+                        progress: Math.random(),
+
+                        speed: Math.random() * .008 + .003
+
+                    });
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+function animateCircuit() {
+
+    ctx.clearRect(0,0,width,height);
+
+    /* CIRCUIT PATHS */
+
+    for(let c of circuits) {
+
+        ctx.beginPath();
+
+        if(c.horizontal) {
+
+            ctx.moveTo(c.x,c.y);
+            ctx.lineTo(c.x+c.length,c.y);
+
+        } else {
+
+            ctx.moveTo(c.x,c.y);
+            ctx.lineTo(c.x,c.y+c.length);
+
+        }
+
+        ctx.strokeStyle =
+            `rgba(34,211,238,${c.opacity})`;
+
+        ctx.lineWidth = 1;
+
+        ctx.stroke();
+
+        /* CIRCUIT NODE */
+
+        ctx.beginPath();
+
+        ctx.arc(
+            c.x,
+            c.y,
+            2,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fillStyle =
+            "rgba(103,232,249,.35)";
+
+        ctx.fill();
+
+    }
+
+    /* ENERGY PULSES */
+
+    for(let p of pulses) {
+
+        p.progress += p.speed;
+
+        if(p.progress > 1) p.progress = 0;
+
+        let px;
+        let py;
+
+        if(p.horizontal) {
+
+            px = p.x + p.length * p.progress;
+            py = p.y;
+
+        } else {
+
+            px = p.x;
+            py = p.y + p.length * p.progress;
+
+        }
+
+        /* PULSE */
+
+        ctx.beginPath();
+
+        ctx.arc(
+            px,
+            py,
+            3,
+            0,
+            Math.PI*2
+        );
+
+        ctx.fillStyle = "#67e8f9";
+
+        ctx.shadowBlur = 20;
+        ctx.shadowColor = "#22d3ee";
+
+        ctx.fill();
+
+        ctx.shadowBlur = 0;
+
+        /* LIGHT TRAIL */
+
+        ctx.beginPath();
+
+        if(p.horizontal) {
+
+            ctx.moveTo(px-18,py);
+            ctx.lineTo(px,py);
+
+        } else {
+
+            ctx.moveTo(px,py-18);
+            ctx.lineTo(px,py);
+
+        }
+
+        ctx.strokeStyle = "rgba(103,232,249,.4)";
+        ctx.lineWidth = 2;
+
+        ctx.stroke();
+
+    }
+
+    requestAnimationFrame(animateCircuit);
+
+}
+
+window.addEventListener("resize",resizeCanvas);
+
+resizeCanvas();
+animateCircuit();
+
+</script>
 
 </body>
 </html>
